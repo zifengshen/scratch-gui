@@ -1,6 +1,11 @@
 const ScratchBlocks = require('scratch-blocks');
 
 module.exports = function (vm) {
+    Object.assign(ScratchBlocks.Categories, {speech: 'speech'});
+
+    Object.assign(ScratchBlocks.Colours, {
+        speech: {primary: '#000000', secondary: '#111111', tertiary: '#222222'}
+    });
 
     const jsonForMenuBlock = function (name, menuOptionsFn, colors, start) {
         return {
@@ -62,6 +67,55 @@ module.exports = function (vm) {
     const sensingColors = ScratchBlocks.Colours.sensing;
 
     const controlColors = ScratchBlocks.Colours.control;
+
+    ScratchBlocks.Blocks.speech_whenihear = {
+      /**
+       * Block to start a stack when speech recognition detects a string.
+       * @this Blockly.Block
+       */
+        init: function () {
+            this.jsonInit({
+                id: 'speech_whenihear',
+                message0: 'when I hear %1',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'STRING'
+                    }
+                ],
+                inputsInline: true,
+                nextStatement: null,
+                category: ScratchBlocks.Categories.speech,
+                colour: ScratchBlocks.Colours.speech.primary,
+                colourSecondary: ScratchBlocks.Colours.speech.secondary,
+                colourTertiary: ScratchBlocks.Colours.speech.tertiary
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.speech_speak = {
+        /**
+        * Block to speak a string with speech synthesis.
+        * @this Blockly.Block
+        */
+        init: function () {
+            this.jsonInit({
+                message0: 'speak %1',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'STRING'
+                    }
+                ],
+                previousStatement: null,
+                nextStatement: null,
+                category: ScratchBlocks.Categories.speech,
+                colour: ScratchBlocks.Colours.speech.primary,
+                colourSecondary: ScratchBlocks.Colours.speech.secondary,
+                colourTertiary: ScratchBlocks.Colours.speech.tertiary
+            });
+        }
+    };
 
     ScratchBlocks.Blocks.sound_sounds_menu.init = function () {
         const json = jsonForMenuBlock('SOUND_MENU', soundsMenu, soundColors, []);

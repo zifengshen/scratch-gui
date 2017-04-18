@@ -1,10 +1,12 @@
 const bindAll = require('lodash.bindall');
 const defaultsDeep = require('lodash.defaultsdeep');
 const React = require('react');
+const {connect} = require('react-redux');
 const VMScratchBlocks = require('../lib/blocks');
 const VM = require('scratch-vm');
 
 const BlocksComponent = require('../components/blocks/blocks.jsx');
+const {getSpriteToolbox, getStageToolbox, getSpeechToolbox} = require('../lib/toolbox-xml');
 
 const addFunctionListener = (object, property, callback) => {
     const oldFn = object[property];
@@ -34,9 +36,11 @@ class Blocks extends React.Component {
         this.state = {workspaceMetrics: {}};
     }
     componentDidMount () {
-        const workspaceConfig = defaultsDeep({}, Blocks.defaultOptions, this.props.options);
+        const workspaceConfig = defaultsDeep({
+            toolbox: this.props.toolbox || this.ScratchBlocks.Blocks.defaultToolbox
+        }, Blocks.defaultOptions, this.props.options);
         this.workspace = this.ScratchBlocks.inject(this.blocks, workspaceConfig);
-
+        window.workspace = this.workspace;
         // @todo change this when blockly supports UI events
         addFunctionListener(this.workspace, 'translate', this.onWorkspaceMetricsChange);
         addFunctionListener(this.workspace, 'zoom', this.onWorkspaceMetricsChange);
@@ -44,7 +48,13 @@ class Blocks extends React.Component {
         this.attachVM();
     }
     shouldComponentUpdate () {
-        return false;
+        // return false;
+        return true;
+    }
+    componentDidUpdate (prevProps) {
+        if (prevProps.toolbox !== this.props.toolbox) {
+            this.workspace.updateToolbox(this.props.toolbox);
+        }
     }
     componentWillUnmount () {
         this.detachVM();
@@ -127,6 +137,7 @@ class Blocks extends React.Component {
         const {
             options, // eslint-disable-line no-unused-vars
             vm, // eslint-disable-line no-unused-vars
+            toolbox, // eslint-disable-line no-unused-vars
             ...props
         } = this.props;
         return (
@@ -159,6 +170,7 @@ Blocks.propTypes = {
             dragShadowOpacity: React.PropTypes.number
         })
     }),
+    toolbox: React.PropTypes.string,
     vm: React.PropTypes.instanceOf(VM).isRequired
 };
 
@@ -191,4 +203,17 @@ Blocks.defaultProps = {
     options: Blocks.defaultOptions
 };
 
-module.exports = Blocks;
+// @todo: add toolbox reducer
+// @todo: connect toolbox state and dispatch to blocks props
+
+const mapStateToProps = state => ({
+    toolbox: state.toolbox.currentToolbox
+});
+
+const mapDispatchToProps = dispatch => ({
+});
+
+module.exports = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Blocks);

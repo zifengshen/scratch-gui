@@ -12,6 +12,13 @@ const {
     closeSpriteLibrary
 } = require('../reducers/modals');
 
+const {
+    setSpriteToolbox,
+    setStageToolbox,
+    setSpeechToolbox,
+    setWedoToolbox
+} = require('../reducers/toolbox');
+
 const TargetPaneComponent = require('../components/target-pane/target-pane.jsx');
 
 class TargetPane extends React.Component {
@@ -50,7 +57,15 @@ class TargetPane extends React.Component {
         this.props.vm.deleteSprite(id);
     }
     handleSelectSprite (id) {
+        // @todo: Set toolbox xml depending on sprite id
         this.props.vm.setEditingTarget(id);
+        if (this.props.sprites[id]) {
+            this.props.onSetSpriteToolbox();
+        } else {
+            // this.props.onSetStageToolbox();
+            this.props.onSetSpeechToolbox();
+        }
+
     }
     render () {
         return (
@@ -113,6 +128,15 @@ const mapDispatchToProps = dispatch => ({
     },
     onRequestCloseSpriteLibrary: () => {
         dispatch(closeSpriteLibrary());
+    },
+    onSetSpriteToolbox: () => {
+        dispatch(setSpriteToolbox());
+    },
+    onSetStageToolbox: () => {
+        dispatch(setStageToolbox());
+    },
+    onSetSpeechToolbox: () => {
+        dispatch(setSpeechToolbox());
     }
 });
 
