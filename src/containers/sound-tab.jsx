@@ -1,3 +1,4 @@
+const PropTypes = require('prop-types');
 const React = require('react');
 const bindAll = require('lodash.bindall');
 
@@ -44,21 +45,31 @@ class SoundTab extends React.Component {
 
     render () {
         const {
-            vm,
+            editingTarget,
+            sprites,
+            stage,
             onNewSoundClick
         } = this.props;
 
-        const sounds = vm.editingTarget ? vm.editingTarget.sprite.sounds.map(sound => (
+        const target = editingTarget && sprites[editingTarget] ? sprites[editingTarget] : stage;
+
+        if (!target) {
+            return null;
+        }
+
+        const sounds = target.sounds ? target.sounds.map(sound => (
             {
                 url: soundIcon,
                 name: sound.name
             }
         )) : [];
 
-
         return (
             <AssetPanel
-                items={sounds}
+                items={sounds.map(sound => ({
+                    url: soundIcon,
+                    ...sound
+                }))}
                 newText={'Add Sound'}
                 selectedItemIndex={this.state.selectedSoundIndex}
                 onDeleteClick={this.handleDeleteSound}
@@ -70,13 +81,27 @@ class SoundTab extends React.Component {
 }
 
 SoundTab.propTypes = {
-    onNewSoundClick: React.PropTypes.func.isRequired,
-    vm: React.PropTypes.instanceOf(VM).isRequired
+    editingTarget: PropTypes.string,
+    onNewSoundClick: PropTypes.func.isRequired,
+    sprites: PropTypes.shape({
+        id: PropTypes.shape({
+            sounds: PropTypes.arrayOf(PropTypes.shape({
+                name: PropTypes.string.isRequired
+            }))
+        })
+    }),
+    stage: PropTypes.shape({
+        sounds: PropTypes.arrayOf(PropTypes.shape({
+            name: PropTypes.string.isRequired
+        }))
+    }),
+    vm: PropTypes.instanceOf(VM).isRequired
 };
 
 const mapStateToProps = state => ({
     editingTarget: state.targets.editingTarget,
     sprites: state.targets.sprites,
+    stage: state.targets.stage,
     soundLibraryVisible: state.modals.soundLibrary
 });
 

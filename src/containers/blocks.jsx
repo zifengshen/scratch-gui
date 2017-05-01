@@ -1,10 +1,11 @@
 const bindAll = require('lodash.bindall');
 const defaultsDeep = require('lodash.defaultsdeep');
+const PropTypes = require('prop-types');
 const React = require('react');
 const {connect} = require('react-redux');
 const VMScratchBlocks = require('../lib/blocks');
 const VM = require('scratch-vm');
-
+const Prompt = require('./prompt.jsx');
 const BlocksComponent = require('../components/blocks/blocks.jsx');
 const {getSpriteToolbox, getStageToolbox, getSpeechToolbox} = require('../lib/toolbox-xml');
 
@@ -24,6 +25,9 @@ class Blocks extends React.Component {
         bindAll(this, [
             'attachVM',
             'detachVM',
+            'handlePromptStart',
+            'handlePromptCallback',
+            'handlePromptClose',
             'onScriptGlowOn',
             'onScriptGlowOff',
             'onBlockGlowOn',
@@ -33,7 +37,11 @@ class Blocks extends React.Component {
             'onWorkspaceMetricsChange',
             'setBlocks'
         ]);
-        this.state = {workspaceMetrics: {}};
+        this.ScratchBlocks.prompt = this.handlePromptStart;
+        this.state = {
+            workspaceMetrics: {},
+            prompt: null
+        };
     }
     componentDidMount () {
         const workspaceConfig = defaultsDeep({
@@ -81,6 +89,7 @@ class Blocks extends React.Component {
         this.props.vm.removeListener('VISUAL_REPORT', this.onVisualReport);
         this.props.vm.removeListener('workspaceUpdate', this.onWorkspaceUpdate);
     }
+
     onWorkspaceMetricsChange () {
         const target = this.props.vm.editingTarget;
         if (target && target.id) {
@@ -133,6 +142,16 @@ class Blocks extends React.Component {
     setBlocks (blocks) {
         this.blocks = blocks;
     }
+    handlePromptStart (message, defaultValue, callback) {
+        this.setState({prompt: {callback, message, defaultValue}});
+    }
+    handlePromptCallback (data) {
+        this.state.prompt.callback(data);
+        this.handlePromptClose();
+    }
+    handlePromptClose () {
+        this.setState({prompt: null});
+    }
     render () {
         const {
             options, // eslint-disable-line no-unused-vars
@@ -141,10 +160,21 @@ class Blocks extends React.Component {
             ...props
         } = this.props;
         return (
-            <BlocksComponent
-                componentRef={this.setBlocks}
-                {...props}
-            />
+            <div>
+                <BlocksComponent
+                    componentRef={this.setBlocks}
+                    {...props}
+                />
+                {this.state.prompt ? (
+                    <Prompt
+                        label={this.state.prompt.message}
+                        placeholder={this.state.prompt.defaultValue}
+                        title="New Variable" // @todo the only prompt is for new variables
+                        onCancel={this.handlePromptClose}
+                        onOk={this.handlePromptCallback}
+                    />
+                ) : null}
+            </div>
         );
     }
 }

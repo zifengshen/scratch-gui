@@ -1,4 +1,5 @@
 const bindAll = require('lodash.bindall');
+const PropTypes = require('prop-types');
 const React = require('react');
 const Renderer = require('scratch-render');
 const AudioEngine = require('scratch-audio');
@@ -13,6 +14,7 @@ class Stage extends React.Component {
             'attachMouseEvents',
             'cancelMouseDownTimeout',
             'detachMouseEvents',
+            'handleDoubleClick',
             'onMouseUp',
             'onMouseMove',
             'onMouseDown',
@@ -23,6 +25,7 @@ class Stage extends React.Component {
         ]);
         this.state = {
             mouseDownTimeoutId: null,
+            mouseDownPosition: null,
             isDragging: false,
             dragOffset: null,
             dragId: null
@@ -71,11 +74,22 @@ class Stage extends React.Component {
             y - (this.rect.height / 2)
         ];
     }
+    handleDoubleClick (e) {
+        // Set editing target from cursor position, if clicking on a sprite.
+        const mousePosition = [e.clientX - this.rect.left, e.clientY - this.rect.top];
+        const drawableId = this.renderer.pick(mousePosition[0], mousePosition[1]);
+        if (drawableId === null) return;
+        const targetId = this.props.vm.getTargetIdForDrawableId(drawableId);
+        if (targetId === null) return;
+        this.props.vm.setEditingTarget(targetId);
+    }
     onMouseMove (e) {
         const mousePosition = [e.clientX - this.rect.left, e.clientY - this.rect.top];
-        this.cancelMouseDownTimeout();
-        if (this.state.mouseDown && !this.state.isDragging) {
-            this.onStartDrag(mousePosition[0], mousePosition[1]);
+        if (this.state.mouseDownTimeoutId !== null) {
+            this.cancelMouseDownTimeout();
+            if (this.state.mouseDown && !this.state.isDragging) {
+                this.onStartDrag(...this.state.mouseDownPosition);
+            }
         }
         if (this.state.mouseDown && this.state.isDragging) {
             const spritePosition = this.getScratchCoords(mousePosition[0], mousePosition[1]);
@@ -96,7 +110,8 @@ class Stage extends React.Component {
     onMouseUp (e) {
         this.cancelMouseDownTimeout();
         this.setState({
-            mouseDown: false
+            mouseDown: false,
+            mouseDownPosition: null
         });
         if (this.state.isDragging) {
             this.onStopDrag();
@@ -115,6 +130,7 @@ class Stage extends React.Component {
         const mousePosition = [e.clientX - this.rect.left, e.clientY - this.rect.top];
         this.setState({
             mouseDown: true,
+            mouseDownPosition: mousePosition,
             mouseDownTimeoutId: setTimeout(
                 this.onStartDrag.bind(this, mousePosition[0], mousePosition[1]),
                 500
@@ -168,6 +184,7 @@ class Stage extends React.Component {
         return (
             <StageComponent
                 canvasRef={this.setCanvas}
+                onDoubleClick={this.handleDoubleClick}
                 {...props}
             />
         );
@@ -175,7 +192,7 @@ class Stage extends React.Component {
 }
 
 Stage.propTypes = {
-    vm: React.PropTypes.instanceOf(VM).isRequired
+    vm: PropTypes.instanceOf(VM).isRequired
 };
 
 module.exports = Stage;
