@@ -4,6 +4,8 @@ function wrapCategories (categories) {
     '</xml>';
 }
 
+const extensions = '<category name="Extensions" custom="EXTENSIONS"></category>';
+
 const speech = '<category name="Speech" colour="#000000" secondaryColour="#777777">' +
     '<block type="speech_whenihear">' +
       '<value name="STRING">'+
@@ -22,7 +24,7 @@ const speech = '<category name="Speech" colour="#000000" secondaryColour="#77777
   '</category>';
 
 const emptyMotion = '<category name="Motion" colour="#4C97FF" secondaryColour="#3373CC">' +
-  '<label text="no blocks"></label>' +
+  '<label text="Stage selected: No motion blocks"></label>' +
   '</category>';
 
 const motion = '<category name="Motion" colour="#4C97FF" secondaryColour="#3373CC">'+
@@ -606,12 +608,12 @@ const everythingElse = '<category name="Sound" colour="#D65CD6" secondaryColour=
 
   module.exports = {
     getSpriteToolbox: () => {
-      return wrapCategories([motion, looks, everythingElse]);
+      return wrapCategories([motion, looks, everythingElse, extensions]);
     },
     getStageToolbox: () => {
-      return wrapCategories([motion, looks, everythingElse]);
+      return wrapCategories([emptyMotion, looks, everythingElse, extensions]);
     },
     getSpeechToolbox: () => {
-      return wrapCategories([motion, looks, everythingElse, speech]);
+      return wrapCategories([motion, looks, everythingElse, speech, extensions]);
     }
   };

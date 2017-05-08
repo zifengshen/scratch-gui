@@ -61,6 +61,7 @@ class Blocks extends React.Component {
     }
     componentDidUpdate (prevProps) {
         if (prevProps.toolbox !== this.props.toolbox) {
+            this.workspace.toolbox_.clearSelection();
             this.workspace.updateToolbox(this.props.toolbox);
         }
     }

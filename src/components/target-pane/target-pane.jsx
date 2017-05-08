@@ -49,6 +49,8 @@ class TargetPane extends React.Component {
             onDeleteSprite,
             onNewSpriteClick,
             onNewBackdropClick,
+            onNewSpeechClick,
+            onNewWedoClick,
             onRequestCloseBackdropLibrary,
             onRequestCloseCostumeLibrary,
             onRequestCloseSoundLibrary,
@@ -103,6 +105,26 @@ class TargetPane extends React.Component {
                         <button
                             className={classNames(styles.addButtonWrapper, styles.addButtonWrapperStage)}
                             onClick={onNewBackdropClick}
+                        >
+                            <img
+                                className={styles.addButton}
+                                src={addIcon}
+                            />
+                        </button>
+
+                        <button
+                            className={classNames(styles.addButtonWrapper, styles.addButtonWrapperSpeech)}
+                            onClick={onNewSpeechClick}
+                        >
+                            <img
+                                className={styles.addButton}
+                                src={addIcon}
+                            />
+                        </button>
+
+                        <button
+                            className={classNames(styles.addButtonWrapper, styles.addButtonWrapperWedo)}
+                            onClick={onNewWedoClick}
                         >
                             <img
                                 className={styles.addButton}
@@ -166,7 +188,9 @@ TargetPane.propTypes = {
     onChangeSpriteY: PropTypes.func,
     onDeleteSprite: PropTypes.func,
     onNewBackdropClick: PropTypes.func,
+    onNewSpeechClick: PropTypes.func,
     onNewSpriteClick: PropTypes.func,
+    onNewWedoClick: PropTypes.func,
     onRequestCloseBackdropLibrary: PropTypes.func,
     onRequestCloseCostumeLibrary: PropTypes.func,
     onRequestCloseSoundLibrary: PropTypes.func,

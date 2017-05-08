@@ -1,11 +1,32 @@
 const ScratchBlocks = require('scratch-blocks');
 
 module.exports = function (vm) {
-    Object.assign(ScratchBlocks.Categories, {speech: 'speech'});
+    Object.assign(ScratchBlocks.Categories, {extensions: 'extensions'});
 
     Object.assign(ScratchBlocks.Colours, {
-        speech: {primary: '#000000', secondary: '#111111', tertiary: '#222222'}
+        extensions: {primary: '#000000', secondary: '#111111', tertiary: '#222222'}
     });
+
+
+    const extensionBlocksCallback = function (workspace) {
+        return
+         '<block type="speech_whenihear">' +
+              '<value name="STRING">'+
+                  '<shadow type="text">'+
+                    '<field name="TEXT">scratch</field>'+
+                  '</shadow>'+
+                '</value>'+
+            '</block>'+
+            '<block type="speech_speak">'+
+              '<value name="STRING">'+
+                '<shadow type="text">'+
+                  '<field name="TEXT">hello</field>'+
+                '</shadow>'+
+              '</value>'+
+            '</block>'
+    };
+
+    window.workspace.registerToolboxCategoryCallback('EXTENSIONS', extensionBlocksCallback);
 
     const jsonForMenuBlock = function (name, menuOptionsFn, colors, start) {
         return {

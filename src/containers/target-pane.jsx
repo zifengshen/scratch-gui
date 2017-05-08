@@ -1,6 +1,8 @@
 const bindAll = require('lodash.bindall');
 const React = require('react');
 
+const SpeechExtension = require('../lib/libraries/speech-extension.json');
+
 const {connect} = require('react-redux');
 
 const {
@@ -32,7 +34,9 @@ class TargetPane extends React.Component {
             'handleChangeSpriteX',
             'handleChangeSpriteY',
             'handleDeleteSprite',
-            'handleSelectSprite'
+            'handleSelectSprite',
+            'handleSpeechClick',
+            'handleWedoClick'
         ]);
     }
     handleChangeSpriteDirection (direction) {
@@ -59,14 +63,27 @@ class TargetPane extends React.Component {
     handleSelectSprite (id) {
         // @todo: Set toolbox xml depending on sprite id
         this.props.vm.setEditingTarget(id);
+
         if (this.props.sprites[id]) {
-            this.props.onSetSpriteToolbox();
+            switch (this.props.sprites[id].name) {
+            case 'Speech':
+                this.props.onSetSpeechToolbox();
+                break;
+            case 'Wedo':
+            default:
+                this.props.onSetSpriteToolbox();
+            }
         } else {
-            // this.props.onSetStageToolbox();
-            this.props.onSetSpeechToolbox();
+            this.props.onSetStageToolbox();
         }
+    }
+    handleSpeechClick () {
+        this.props.vm.addSprite2(JSON.stringify(SpeechExtension.sprite));
+    }
+    handleWedoClick () {
 
     }
+
     render () {
         return (
             <TargetPaneComponent
@@ -78,6 +95,8 @@ class TargetPane extends React.Component {
                 onChangeSpriteX={this.handleChangeSpriteX}
                 onChangeSpriteY={this.handleChangeSpriteY}
                 onDeleteSprite={this.handleDeleteSprite}
+                onNewSpeechClick={this.handleSpeechClick}
+                onNewWedoClick={this.handleWedoClick}
                 onSelectSprite={this.handleSelectSprite}
             />
         );
@@ -109,6 +128,7 @@ const mapStateToProps = state => ({
     costumeLibraryVisible: state.modals.costumeLibrary,
     backdropLibraryVisible: state.modals.backdropLibrary
 });
+
 const mapDispatchToProps = dispatch => ({
     onNewBackdropClick: e => {
         e.preventDefault();
