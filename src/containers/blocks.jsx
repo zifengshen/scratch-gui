@@ -61,7 +61,7 @@ class Blocks extends React.Component {
     }
     componentDidUpdate (prevProps) {
         if (prevProps.toolbox !== this.props.toolbox) {
-            this.workspace.toolbox_.clearSelection();
+            // this.workspace.toolbox_.clearSelection();
             this.workspace.updateToolbox(this.props.toolbox);
         }
     }
@@ -124,13 +124,16 @@ class Blocks extends React.Component {
             this.onWorkspaceMetricsChange();
         }
 
-        this.ScratchBlocks.Events.disable();
-        this.workspace.clear();
-
+        console.log('onWorkspaceUpdate');
         const dom = this.ScratchBlocks.Xml.textToDom(data.xml);
         this.ScratchBlocks.Xml.domToWorkspace(dom, this.workspace);
-        this.ScratchBlocks.Events.enable();
-        this.workspace.toolbox_.refreshSelection();
+
+        // this.ScratchBlocks.Events.disable();
+        // this.workspace.clear();
+        // const dom = this.ScratchBlocks.Xml.textToDom(data.xml);
+        // this.ScratchBlocks.Xml.domToWorkspace(dom, this.workspace);
+        // this.ScratchBlocks.Events.enable();
+        // this.workspace.toolbox_.refreshSelection();
 
         if (this.props.vm.editingTarget && this.state.workspaceMetrics[this.props.vm.editingTarget.id]) {
             const {scrollX, scrollY, scale} = this.state.workspaceMetrics[this.props.vm.editingTarget.id];

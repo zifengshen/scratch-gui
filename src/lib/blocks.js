@@ -7,27 +7,6 @@ module.exports = function (vm) {
         extensions: {primary: '#000000', secondary: '#111111', tertiary: '#222222'}
     });
 
-
-    const extensionBlocksCallback = function (workspace) {
-        return
-         '<block type="speech_whenihear">' +
-              '<value name="STRING">'+
-                  '<shadow type="text">'+
-                    '<field name="TEXT">scratch</field>'+
-                  '</shadow>'+
-                '</value>'+
-            '</block>'+
-            '<block type="speech_speak">'+
-              '<value name="STRING">'+
-                '<shadow type="text">'+
-                  '<field name="TEXT">hello</field>'+
-                '</shadow>'+
-              '</value>'+
-            '</block>'
-    };
-
-    window.workspace.registerToolboxCategoryCallback('EXTENSIONS', extensionBlocksCallback);
-
     const jsonForMenuBlock = function (name, menuOptionsFn, colors, start) {
         return {
             message0: '%1',
@@ -106,10 +85,10 @@ module.exports = function (vm) {
                 ],
                 inputsInline: true,
                 nextStatement: null,
-                category: ScratchBlocks.Categories.speech,
-                colour: ScratchBlocks.Colours.speech.primary,
-                colourSecondary: ScratchBlocks.Colours.speech.secondary,
-                colourTertiary: ScratchBlocks.Colours.speech.tertiary
+                category: ScratchBlocks.Categories.extensions,
+                colour: ScratchBlocks.Colours.extensions.primary,
+                colourSecondary: ScratchBlocks.Colours.extensions.secondary,
+                colourTertiary: ScratchBlocks.Colours.extensions.tertiary
             });
         }
     };
@@ -130,10 +109,10 @@ module.exports = function (vm) {
                 ],
                 previousStatement: null,
                 nextStatement: null,
-                category: ScratchBlocks.Categories.speech,
-                colour: ScratchBlocks.Colours.speech.primary,
-                colourSecondary: ScratchBlocks.Colours.speech.secondary,
-                colourTertiary: ScratchBlocks.Colours.speech.tertiary
+                category: ScratchBlocks.Categories.extensions,
+                colour: ScratchBlocks.Colours.extensions.primary,
+                colourSecondary: ScratchBlocks.Colours.extensions.secondary,
+                colourTertiary: ScratchBlocks.Colours.extensions.tertiary
             });
         }
     };

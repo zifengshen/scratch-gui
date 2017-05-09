@@ -79,6 +79,7 @@ class TargetPane extends React.Component {
     }
     handleSpeechClick () {
         this.props.vm.addSprite2(JSON.stringify(SpeechExtension.sprite));
+        this.props.onSetSpeechToolbox();
     }
     handleWedoClick () {
 

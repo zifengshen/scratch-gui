@@ -1,33 +1,71 @@
 function wrapCategories (categories) {
   return '<xml style="display: none">' +
-    categories.join() +
+    categories.join('') +
     '</xml>';
 }
 
-const extensions = '<category name="Extensions" custom="EXTENSIONS"></category>';
+var hasSpeech = false;
+var hasWedo = false;
 
-const speech = '<category name="Speech" colour="#000000" secondaryColour="#777777">' +
+function getGlobalExtensionBlocks () {
+    var xml = extensionsCategory;
+    if (hasSpeech) {
+        xml += speechGlobal;
+    }
+    if (hasWedo) {
+        xml += wedoGlobal;
+    }
+    xml += '</category>';
+    return xml;
+}
+
+function getSpeechExtensionBlocks () {
+    var xml = extensionsCategory;
+    xml += speechGlobal;
+    xml += speechLocal;
+    if (hasWedo) {
+        xml += wedoGlobal;
+    }
+    xml += '</category>';
+    return xml;
+}
+
+function getWedoExtensionBlocks () {
+    var xml = extensionsCategory;
+    xml += wedoGlobal;
+    xml += wedoLocal;
+    if (hasSpeech) {
+        xml += speechGlobal;
+    }
+    xml += '</category>';
+    return xml;
+}
+
+const extensionsCategory = '<category name="Extensions" colour="#000000" secondaryColour="#777777">';
+
+const speechGlobal =
     '<block type="speech_whenihear">' +
       '<value name="STRING">'+
           '<shadow type="text">'+
             '<field name="TEXT">scratch</field>'+
           '</shadow>'+
         '</value>'+
-    '</block>'+
+    '</block>';
+
+const speechLocal =
     '<block type="speech_speak">'+
       '<value name="STRING">'+
         '<shadow type="text">'+
           '<field name="TEXT">hello</field>'+
         '</shadow>'+
       '</value>'+
-    '</block>'+
-  '</category>';
+    '</block>';
 
-const emptyMotion = '<category name="Motion" colour="#4C97FF" secondaryColour="#3373CC">' +
-  '<label text="Stage selected: No motion blocks"></label>' +
-  '</category>';
+const wedoGlobal = '';
 
-const motion = '<category name="Motion" colour="#4C97FF" secondaryColour="#3373CC">'+
+const wedoLocal = '';
+
+const core = '<category name="Motion" colour="#4C97FF" secondaryColour="#3373CC">'+
     '<block type="motion_movesteps">'+
       '<value name="STEPS">'+
         '<shadow type="math_number">'+
@@ -130,9 +168,8 @@ const motion = '<category name="Motion" colour="#4C97FF" secondaryColour="#3373C
     '<block type="motion_xposition"></block>'+
     '<block type="motion_yposition"></block>'+
     '<block type="motion_direction"></block>'+
-  '</category>';
-
-const looks = '<category name="Looks" colour="#9966FF" secondaryColour="#774DCB">'+
+  '</category>' +
+  '<category name="Looks" colour="#9966FF" secondaryColour="#774DCB">'+
     '<block type="looks_show"></block>'+
     '<block type="looks_hide"></block>'+
     '<block type="looks_switchcostumeto">'+
@@ -193,9 +230,8 @@ const looks = '<category name="Looks" colour="#9966FF" secondaryColour="#774DCB"
     '<block type="looks_backdroporder"></block>'+
     '<block type="looks_backdropname"></block>'+
     '<block type="looks_size"></block>'+
-  '</category>';
-
-const everythingElse = '<category name="Sound" colour="#D65CD6" secondaryColour="#BD42BD">'+
+  '</category>' +
+  '<category name="Sound" colour="#D65CD6" secondaryColour="#BD42BD">'+
     '<block type="sound_play">'+
       '<value name="SOUND_MENU">'+
         '<shadow type="sound_sounds_menu"></shadow>'+
@@ -608,12 +644,17 @@ const everythingElse = '<category name="Sound" colour="#D65CD6" secondaryColour=
 
   module.exports = {
     getSpriteToolbox: () => {
-      return wrapCategories([motion, looks, everythingElse, extensions]);
+        return wrapCategories([core, getGlobalExtensionBlocks()]);
     },
     getStageToolbox: () => {
-      return wrapCategories([emptyMotion, looks, everythingElse, extensions]);
+        return wrapCategories([core, getGlobalExtensionBlocks()]);
     },
     getSpeechToolbox: () => {
-      return wrapCategories([motion, looks, everythingElse, speech, extensions]);
+        hasSpeech = true;
+        return wrapCategories([core, getSpeechExtensionBlocks()]);
+    },
+    getWedoToolbox: () => {
+        hasWedo = true;
+        return wrapCategories([core, getWedoExtensionBlocks()]);
     }
   };
