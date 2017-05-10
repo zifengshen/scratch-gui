@@ -124,16 +124,13 @@ class Blocks extends React.Component {
             this.onWorkspaceMetricsChange();
         }
 
-        console.log('onWorkspaceUpdate');
+        this.ScratchBlocks.Events.disable();
+        this.workspace.clear();
+
         const dom = this.ScratchBlocks.Xml.textToDom(data.xml);
         this.ScratchBlocks.Xml.domToWorkspace(dom, this.workspace);
-
-        // this.ScratchBlocks.Events.disable();
-        // this.workspace.clear();
-        // const dom = this.ScratchBlocks.Xml.textToDom(data.xml);
-        // this.ScratchBlocks.Xml.domToWorkspace(dom, this.workspace);
-        // this.ScratchBlocks.Events.enable();
-        // this.workspace.toolbox_.refreshSelection();
+        this.ScratchBlocks.Events.enable();
+        this.workspace.toolbox_.refreshSelection();
 
         if (this.props.vm.editingTarget && this.state.workspaceMetrics[this.props.vm.editingTarget.id]) {
             const {scrollX, scrollY, scale} = this.state.workspaceMetrics[this.props.vm.editingTarget.id];
