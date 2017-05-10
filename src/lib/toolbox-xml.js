@@ -44,6 +44,7 @@ function getWedoExtensionBlocks () {
 const extensionsCategory = '<category name="Extensions" colour="#FF6680" secondaryColour="#FF4D6A">';
 
 const speechGlobal =
+    '<label text="Speech" web-class="extensionLabel"></label>' +
     '<block type="speech_whenihear">' +
       '<value name="STRING">'+
           '<shadow type="text">'+
