@@ -4,7 +4,7 @@ module.exports = function (vm) {
     Object.assign(ScratchBlocks.Categories, {extensions: 'extensions'});
 
     Object.assign(ScratchBlocks.Colours, {
-        extensions: {primary: '#000000', secondary: '#111111', tertiary: '#222222'}
+        extensions: {primary: '#FF6680', secondary: '#FF4D6A', tertiary: '#FF3355'}
     });
 
     const jsonForMenuBlock = function (name, menuOptionsFn, colors, start) {

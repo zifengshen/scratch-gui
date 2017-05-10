@@ -41,7 +41,7 @@ function getWedoExtensionBlocks () {
     return xml;
 }
 
-const extensionsCategory = '<category name="Extensions" colour="#000000" secondaryColour="#777777">';
+const extensionsCategory = '<category name="Extensions" colour="#FF6680" secondaryColour="#FF4D6A">';
 
 const speechGlobal =
     '<block type="speech_whenihear">' +
