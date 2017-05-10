@@ -50,7 +50,8 @@ const speechGlobal =
             '<field name="TEXT">scratch</field>'+
           '</shadow>'+
         '</value>'+
-    '</block>';
+    '</block>'+
+    '<block type="speech_getlatestspeech"></block>';
 
 const speechLocal =
     '<block type="speech_speak">'+

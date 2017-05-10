@@ -117,6 +117,25 @@ module.exports = function (vm) {
         }
     };
 
+    ScratchBlocks.Blocks.speech_getlatestspeech = {
+        /**
+        * Block to to get the most recent speech recognition result.
+        * @this Blockly.Block
+        */
+        init: function () {
+            this.jsonInit({
+                message0: 'speech',
+                output: 'String',
+                outputShape: ScratchBlocks.OUTPUT_SHAPE_ROUND,
+                checkboxInFlyout: true,
+                category: ScratchBlocks.Categories.extensions,
+                colour: ScratchBlocks.Colours.extensions.primary,
+                colourSecondary: ScratchBlocks.Colours.extensions.secondary,
+                colourTertiary: ScratchBlocks.Colours.extensions.tertiary
+            });
+        }
+    };
+
     ScratchBlocks.Blocks.sound_sounds_menu.init = function () {
         const json = jsonForMenuBlock('SOUND_MENU', soundsMenu, soundColors, []);
         this.jsonInit(json);
