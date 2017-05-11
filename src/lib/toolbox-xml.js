@@ -63,9 +63,50 @@ const speechLocal =
       '</value>'+
     '</block>';
 
-const wedoGlobal = '';
+const wedoGlobal =
+    '<label text="LEGO WeDo 2.0" web-class="extensionLabel"></label>' +
+    '<block type="wedo_whendistanceclose"></block>'+
+    '<block type="wedo_whentilt">'+
+        '<value name="CHOICE">'+
+            '<shadow type="dropdown_wedo_whentilt" />'+
+        '</value>'+
+    '</block>'+
+    '<block type="wedo_distance"></block>'+
+    '<block type="wedo_tilt">'+
+        '<value name="CHOICE">'+
+            '<shadow type="dropdown_wedo_tilt" />'+
+        '</value>'+
+    '</block>';
 
-const wedoLocal = '';
+const wedoLocal =
+    '<block type="wedo_setcolor">'+
+        '<value name="CHOICE">'+
+            '<shadow type="math_positive_number">'+
+                '<field name="NUM">1</field>'+
+            '</shadow>'+
+        '</value>'+
+    '</block>'+
+    '<block type="wedo_motorclockwise">'+
+        '<value name="DURATION">'+
+            '<shadow type="math_positive_number">'+
+                '<field name="NUM">1</field>'+
+            '</shadow>'+
+        '</value>'+
+    '</block>'+
+    '<block type="wedo_motorcounterclockwise">'+
+        '<value name="DURATION">'+
+            '<shadow type="math_positive_number">'+
+                '<field name="NUM">1</field>'+
+            '</shadow>'+
+        '</value>'+
+    '</block>'+
+    '<block type="wedo_motorspeed">'+
+        '<value name="CHOICE">'+
+            '<shadow type="math_positive_number">'+
+                '<field name="NUM">50</field>'+
+            '</shadow>'+
+        '</value>'+
+    '</block>';
 
 const core = '<category name="Motion" colour="#4C97FF" secondaryColour="#3373CC">'+
     '<block type="motion_movesteps">'+
