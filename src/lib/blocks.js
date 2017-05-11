@@ -500,7 +500,7 @@ module.exports = function (vm) {
     ScratchBlocks.Blocks.wedo2_getTiltAngle = {
         init: function () {
             this.jsonInit({
-                message0: 'tilt angle %1',
+                message0: 'tilt angle %1.',
                 args0: [
                     {
                         type: 'input_value',
