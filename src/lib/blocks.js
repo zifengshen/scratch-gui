@@ -136,14 +136,355 @@ module.exports = function (vm) {
         }
     };
 
-    ScratchBlocks.Blocks.wedo_distanceclose = {
+    ScratchBlocks.Blocks.wedo2_dropdown_motor = {
         init: function () {
             this.jsonInit({
-                "id": "wedo_whendistanceclose",
-                "message0": "when distance close",
-                "args0": [],
-                "inputsInline": true,
-                "nextStatement": null,
+                message0: '%1',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'MOTOR_ID',
+                        options: [
+                          ['motor', 'DEFAULT'],
+                          ['motor A', 'A'],
+                          ['motor B', 'B'],
+                          ['all motors', 'ALL']
+                        ]
+                    }
+                ],
+                output: 'String',
+                category: ScratchBlocks.Categories.extensions,
+                colour: ScratchBlocks.Colours.extensions.primary,
+                colourSecondary: ScratchBlocks.Colours.extensions.secondary,
+                colourTertiary: ScratchBlocks.Colours.extensions.tertiary
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.wedo2_motorOnFor = {
+        init: function () {
+            this.jsonInit({
+                message0: 'turn %1 on for %2 secs',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'MOTOR_ID'
+                    },
+                    {
+                        type: 'input_value',
+                        name: 'DURATION'
+                    }
+                ],
+                previousStatement: null,
+                nextStatement: null,
+                category: ScratchBlocks.Categories.extensions,
+                colour: ScratchBlocks.Colours.extensions.primary,
+                colourSecondary: ScratchBlocks.Colours.extensions.secondary,
+                colourTertiary: ScratchBlocks.Colours.extensions.tertiary
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.wedo2_motorOn = {
+        init: function () {
+            this.jsonInit({
+                message0: 'turn %1 on',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'MOTOR_ID'
+                    }
+                ],
+                previousStatement: null,
+                nextStatement: null,
+                category: ScratchBlocks.Categories.extensions,
+                colour: ScratchBlocks.Colours.extensions.primary,
+                colourSecondary: ScratchBlocks.Colours.extensions.secondary,
+                colourTertiary: ScratchBlocks.Colours.extensions.tertiary
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.wedo2_motorOff = {
+        init: function () {
+            this.jsonInit({
+                message0: 'turn %1 off',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'MOTOR_ID'
+                    }
+                ],
+                previousStatement: null,
+                nextStatement: null,
+                category: ScratchBlocks.Categories.extensions,
+                colour: ScratchBlocks.Colours.extensions.primary,
+                colourSecondary: ScratchBlocks.Colours.extensions.secondary,
+                colourTertiary: ScratchBlocks.Colours.extensions.tertiary
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.wedo2_startMotorPower = {
+        init: function () {
+            this.jsonInit({
+                message0: 'set %1 power to %2',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'MOTOR_ID'
+                    },
+                    {
+                        type: 'input_value',
+                        name: 'POWER'
+                    }
+                ],
+                previousStatement: null,
+                nextStatement: null,
+                category: ScratchBlocks.Categories.extensions,
+                colour: ScratchBlocks.Colours.extensions.primary,
+                colourSecondary: ScratchBlocks.Colours.extensions.secondary,
+                colourTertiary: ScratchBlocks.Colours.extensions.tertiary
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.wedo2_dropdown_direction = {
+        init: function () {
+            this.jsonInit({
+                message0: '%1',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'DIRECTION',
+                        options: [
+                          ['this way', 'FORWARD'],
+                          ['that way', 'BACKWARD'],
+                          ['reverse', 'REVERSE']
+                        ]
+                    }
+                ],
+                output: 'String',
+                category: ScratchBlocks.Categories.extensions,
+                colour: ScratchBlocks.Colours.extensions.primary,
+                colourSecondary: ScratchBlocks.Colours.extensions.secondary,
+                colourTertiary: ScratchBlocks.Colours.extensions.tertiary
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.wedo2_setMotorDirection = {
+        init: function () {
+            this.jsonInit({
+                message0: 'set %1 direction to %2',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'MOTOR_ID'
+                    },
+                    {
+                        type: 'input_value',
+                        name: 'DIRECTION'
+                    }
+                ],
+                previousStatement: null,
+                nextStatement: null,
+                category: ScratchBlocks.Categories.extensions,
+                colour: ScratchBlocks.Colours.extensions.primary,
+                colourSecondary: ScratchBlocks.Colours.extensions.secondary,
+                colourTertiary: ScratchBlocks.Colours.extensions.tertiary
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.wedo2_setLightHue = {
+        init: function () {
+            this.jsonInit({
+                message0: 'set light color to %1',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'HUE'
+                    }
+                ],
+                previousStatement: null,
+                nextStatement: null,
+                category: ScratchBlocks.Categories.extensions,
+                colour: ScratchBlocks.Colours.extensions.primary,
+                colourSecondary: ScratchBlocks.Colours.extensions.secondary,
+                colourTertiary: ScratchBlocks.Colours.extensions.tertiary
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.wedo2_playNoteFor = {
+        init: function () {
+            this.jsonInit({
+                message0: 'play note %1 for %2 seconds',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'NOTE'
+                    },
+                    {
+                        type: 'input_value',
+                        name: 'DURATION'
+                    }
+                ],
+                previousStatement: null,
+                nextStatement: null,
+                category: ScratchBlocks.Categories.extensions,
+                colour: ScratchBlocks.Colours.extensions.primary,
+                colourSecondary: ScratchBlocks.Colours.extensions.secondary,
+                colourTertiary: ScratchBlocks.Colours.extensions.tertiary
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.wedo2_dropdown_op = {
+        init: function () {
+            this.jsonInit({
+                message0: '%1',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'OP',
+                        options: [
+                          ['<', '<'],
+                          ['>', '>']
+                        ]
+                    }
+                ],
+                output: 'String',
+                category: ScratchBlocks.Categories.extensions,
+                colour: ScratchBlocks.Colours.extensions.primary,
+                colourSecondary: ScratchBlocks.Colours.extensions.secondary,
+                colourTertiary: ScratchBlocks.Colours.extensions.tertiary
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.wedo2_whenDistance = {
+        init: function () {
+            this.jsonInit({
+                id: 'wedo2_whendistance',
+                message0: 'when distance %1 %2',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'OP'
+                    },
+                    {
+                        type: 'input_value',
+                        name: 'REFERENCE'
+                    }
+                ],
+                inputsInline: true,
+                nextStatement: null,
+                category: ScratchBlocks.Categories.extensions,
+                colour: ScratchBlocks.Colours.extensions.primary,
+                colourSecondary: ScratchBlocks.Colours.extensions.secondary,
+                colourTertiary: ScratchBlocks.Colours.extensions.tertiary
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.wedo2_dropdown_tilt = {
+        init: function () {
+            this.jsonInit({
+                message0: '%1',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'DIRECTION',
+                        options: [
+                          ['any', 'ANY'],
+                          ['up', 'UP'],
+                          ['down', 'DOWN'],
+                          ['left', 'LEFT'],
+                          ['right', 'RIGHT']
+                        ]
+                    }
+                ],
+                output: 'String',
+                category: ScratchBlocks.Categories.extensions,
+                colour: ScratchBlocks.Colours.extensions.primary,
+                colourSecondary: ScratchBlocks.Colours.extensions.secondary,
+                colourTertiary: ScratchBlocks.Colours.extensions.tertiary
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.wedo2_whenTilted = {
+        init: function () {
+            this.jsonInit({
+                id: 'wedo2_whentilted',
+                message0: 'when tilted %1',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'DIRECTION'
+                    }
+                ],
+                inputsInline: true,
+                nextStatement: null,
+                category: ScratchBlocks.Categories.extensions,
+                colour: ScratchBlocks.Colours.extensions.primary,
+                colourSecondary: ScratchBlocks.Colours.extensions.secondary,
+                colourTertiary: ScratchBlocks.Colours.extensions.tertiary
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.wedo2_getDistance = {
+        init: function () {
+            this.jsonInit({
+                message0: 'distance',
+                output: 'Number',
+                outputShape: ScratchBlocks.OUTPUT_SHAPE_ROUND,
+                checkboxInFlyout: true,
+                category: ScratchBlocks.Categories.extensions,
+                colour: ScratchBlocks.Colours.extensions.primary,
+                colourSecondary: ScratchBlocks.Colours.extensions.secondary,
+                colourTertiary: ScratchBlocks.Colours.extensions.tertiary
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.wedo2_isTilted = {
+        init: function () {
+            this.jsonInit({
+                message0: 'tilted %1?',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'DIRECTION'
+                    }
+                ],
+                output: 'Boolean',
+                outputShape: ScratchBlocks.OUTPUT_SHAPE_HEXAGONAL,
+                checkboxInFlyout: false,
+                category: ScratchBlocks.Categories.extensions,
+                colour: ScratchBlocks.Colours.extensions.primary,
+                colourSecondary: ScratchBlocks.Colours.extensions.secondary,
+                colourTertiary: ScratchBlocks.Colours.extensions.tertiary
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.wedo2_getTiltAngle = {
+        init: function () {
+            this.jsonInit({
+                message0: 'tilt angle %1',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'DIRECTION'
+                    }
+                ],
+                output: 'Number',
+                outputShape: ScratchBlocks.OUTPUT_SHAPE_ROUND,
+                checkboxInFlyout: false,
                 category: ScratchBlocks.Categories.extensions,
                 colour: ScratchBlocks.Colours.extensions.primary,
                 colourSecondary: ScratchBlocks.Colours.extensions.secondary,

@@ -2,7 +2,7 @@
     "sprite": {
         "objName": "Speech",
         "costumes": [{
-            "costumeName": "apple",
+            "costumeName": "Speech",
             "baseLayerID": -1,
             "baseLayerMD5": "05549ed4dfada4c1129e8357fd58789a.svg",
             "rotationCenterX": 31,

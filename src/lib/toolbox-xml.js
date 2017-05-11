@@ -10,9 +10,11 @@ var hasWedo = false;
 function getGlobalExtensionBlocks () {
     var xml = extensionsCategory;
     if (hasSpeech) {
+        xml += speechLabel;
         xml += speechGlobal;
     }
     if (hasWedo) {
+        xml += wedoLabel;
         xml += wedoGlobal;
     }
     xml += '</category>';
@@ -21,9 +23,11 @@ function getGlobalExtensionBlocks () {
 
 function getSpeechExtensionBlocks () {
     var xml = extensionsCategory;
-    xml += speechGlobal;
+    xml += speechLabel;
     xml += speechLocal;
+    xml += speechGlobal;
     if (hasWedo) {
+        xml += wedoLabel;
         xml += wedoGlobal;
     }
     xml += '</category>';
@@ -32,9 +36,11 @@ function getSpeechExtensionBlocks () {
 
 function getWedoExtensionBlocks () {
     var xml = extensionsCategory;
-    xml += wedoGlobal;
+    xml += wedoLabel;
     xml += wedoLocal;
+    xml += wedoGlobal;
     if (hasSpeech) {
+        xml += speechLabel;
         xml += speechGlobal;
     }
     xml += '</category>';
@@ -43,16 +49,7 @@ function getWedoExtensionBlocks () {
 
 const extensionsCategory = '<category name="Extensions" colour="#FF6680" secondaryColour="#FF4D6A">';
 
-const speechGlobal =
-    '<label text="Speech" web-class="extensionLabel"></label>' +
-    '<block type="speech_whenihear">' +
-      '<value name="STRING">'+
-          '<shadow type="text">'+
-            '<field name="TEXT">scratch</field>'+
-          '</shadow>'+
-        '</value>'+
-    '</block>'+
-    '<block type="speech_getlatestspeech"></block>';
+const speechLabel = '<label text="Speech" web-class="extensionLabel"></label>';
 
 const speechLocal =
     '<block type="speech_speak">'+
@@ -63,48 +60,102 @@ const speechLocal =
       '</value>'+
     '</block>';
 
-const wedoGlobal =
-    '<label text="LEGO WeDo 2.0" web-class="extensionLabel"></label>' +
-    '<block type="wedo_whendistanceclose"></block>'+
-    '<block type="wedo_whentilt">'+
-        '<value name="CHOICE">'+
-            '<shadow type="dropdown_wedo_whentilt" />'+
+const speechGlobal =
+    '<block type="speech_whenihear">' +
+      '<value name="STRING">'+
+          '<shadow type="text">'+
+            '<field name="TEXT">scratch</field>'+
+          '</shadow>'+
         '</value>'+
     '</block>'+
-    '<block type="wedo_distance"></block>'+
-    '<block type="wedo_tilt">'+
-        '<value name="CHOICE">'+
-            '<shadow type="dropdown_wedo_tilt" />'+
+    '<block type="speech_getlatestspeech"></block>';
+
+const wedoLabel = '<label text="LEGO WeDo 2.0" web-class="extensionLabel"></label>';
+
+const wedoLocal =
+    '<block type="wedo2_motorOnFor">'+
+        '<value name="MOTOR_ID">'+
+            '<shadow type="wedo2_dropdown_motor" />'+
+        '</value>'+
+        '<value name="DURATION">'+
+            '<shadow type="math_positive_number">'+
+                '<field name="NUM">1</field>'+
+            '</shadow>'+
+        '</value>'+
+    '</block>'+
+    '<block type="wedo2_motorOn">'+
+        '<value name="MOTOR_ID">'+
+            '<shadow type="wedo2_dropdown_motor" />'+
+        '</value>'+
+    '</block>'+
+    '<block type="wedo2_motorOff">'+
+        '<value name="MOTOR_ID">'+
+            '<shadow type="wedo2_dropdown_motor" />'+
+        '</value>'+
+    '</block>'+
+    '<block type="wedo2_startMotorPower">'+
+        '<value name="MOTOR_ID">'+
+            '<shadow type="wedo2_dropdown_motor" />'+
+        '</value>'+
+        '<value name="POWER">'+
+            '<shadow type="math_positive_number">'+
+                '<field name="NUM">100</field>'+
+            '</shadow>'+
+        '</value>'+
+    '</block>'+
+    '<block type="wedo2_setMotorDirection">'+
+        '<value name="MOTOR_ID">'+
+            '<shadow type="wedo2_dropdown_motor" />'+
+        '</value>'+
+        '<value name="DIRECTION">'+
+            '<shadow type="wedo2_dropdown_direction" />'+
+        '</value>'+
+    '</block>'+
+    '<block type="wedo2_setLightHue">'+
+        '<value name="HUE">'+
+            '<shadow type="math_number">'+
+                '<field name="NUM">50</field>'+
+            '</shadow>'+
+        '</value>'+
+    '</block>'+
+    '<block type="wedo2_playNoteFor">'+
+        '<value name="NOTE">'+
+            '<shadow type="math_number">'+
+                '<field name="NUM">60</field>'+
+            '</shadow>'+
+        '</value>'+
+        '<value name="DURATION">'+
+            '<shadow type="math_positive_number">'+
+                '<field name="NUM">0.5</field>'+
+            '</shadow>'+
         '</value>'+
     '</block>';
 
-const wedoLocal =
-    '<block type="wedo_setcolor">'+
-        '<value name="CHOICE">'+
-            '<shadow type="math_positive_number">'+
-                '<field name="NUM">1</field>'+
-            '</shadow>'+
+const wedoGlobal =
+    '<block type="wedo2_whenDistance">'+
+        '<value name="OP">'+
+            '<shadow type="wedo2_dropdown_op" />'+
         '</value>'+
-    '</block>'+
-    '<block type="wedo_motorclockwise">'+
-        '<value name="DURATION">'+
-            '<shadow type="math_positive_number">'+
-                '<field name="NUM">1</field>'+
-            '</shadow>'+
-        '</value>'+
-    '</block>'+
-    '<block type="wedo_motorcounterclockwise">'+
-        '<value name="DURATION">'+
-            '<shadow type="math_positive_number">'+
-                '<field name="NUM">1</field>'+
-            '</shadow>'+
-        '</value>'+
-    '</block>'+
-    '<block type="wedo_motorspeed">'+
-        '<value name="CHOICE">'+
+        '<value name="REFERENCE">'+
             '<shadow type="math_positive_number">'+
                 '<field name="NUM">50</field>'+
             '</shadow>'+
+        '</value>'+
+    '</block>'+
+    '<block type="wedo2_whenTilted">'+
+        '<value name="DIRECTION">'+
+            '<shadow type="wedo2_dropdown_tilt" />'+
+        '</value>'+
+    '</block>'+
+    '<block type="wedo2_getDistance"></block>'+
+    '<block type="wedo2_isTilted">'+
+        '<value name="DIRECTION">'+
+            '<shadow type="wedo2_dropdown_tilt" />'+
+        '</value>'+
+    '</block>'+
+    '<block type="wedo2_getTiltAngle">'+
+        '<value name="DIRECTION">'+
+            '<shadow type="wedo2_dropdown_tilt" />'+
         '</value>'+
     '</block>';
 

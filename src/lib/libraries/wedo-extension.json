@@ -2,9 +2,9 @@
     "sprite": {
         "objName": "LEGO WeDo",
         "costumes": [{
-            "costumeName": "apple",
+            "costumeName": "LEGO WeDo",
             "baseLayerID": -1,
-            "baseLayerMD5": "05549ed4dfada4c1129e8357fd58789a.svg",
+            "baseLayerMD5": "fe423da4484d2d39ca0c4e66af1c2182.png",
             "rotationCenterX": 31,
             "rotationCenterY": 31
         }],
