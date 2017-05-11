@@ -415,6 +415,31 @@ module.exports = function (vm) {
         }
     };
 
+    ScratchBlocks.Blocks.wedo2_dropdown_tilt_reporter = {
+        init: function () {
+            this.jsonInit({
+                message0: '%1',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'DIRECTION',
+                        options: [
+                          ['up', 'UP'],
+                          ['down', 'DOWN'],
+                          ['left', 'LEFT'],
+                          ['right', 'RIGHT']
+                        ]
+                    }
+                ],
+                output: 'String',
+                category: ScratchBlocks.Categories.extensions,
+                colour: ScratchBlocks.Colours.extensions.primary,
+                colourSecondary: ScratchBlocks.Colours.extensions.secondary,
+                colourTertiary: ScratchBlocks.Colours.extensions.tertiary
+            });
+        }
+    };
+
     ScratchBlocks.Blocks.wedo2_whenTilted = {
         init: function () {
             this.jsonInit({

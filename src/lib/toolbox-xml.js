@@ -155,7 +155,7 @@ const wedoGlobal =
     '</block>'+
     '<block type="wedo2_getTiltAngle">'+
         '<value name="DIRECTION">'+
-            '<shadow type="wedo2_dropdown_tilt" />'+
+            '<shadow type="wedo2_dropdown_tilt_reporter" />'+
         '</value>'+
     '</block>';
 
