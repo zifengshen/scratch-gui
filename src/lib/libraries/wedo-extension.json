@@ -1,0 +1,22 @@
+{
+    "sprite": {
+        "objName": "LEGO WeDo",
+        "costumes": [{
+            "costumeName": "apple",
+            "baseLayerID": -1,
+            "baseLayerMD5": "05549ed4dfada4c1129e8357fd58789a.svg",
+            "rotationCenterX": 31,
+            "rotationCenterY": 31
+        }],
+        "currentCostumeIndex": 0,
+        "scratchX": 0,
+        "scratchY": 0,
+        "scale": 1,
+        "direction": 90,
+        "rotationStyle": "normal",
+        "isDraggable": false,
+        "indexInLibrary": 100000,
+        "visible": false,
+        "spriteInfo": {}
+    }
+}

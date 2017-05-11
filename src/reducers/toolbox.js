@@ -1,7 +1,7 @@
 const UPDATE_TOOLBOX = 'scratch-gui/toolbox/UPDATE_TOOLBOX';
 
 
-const {getSpriteToolbox, getStageToolbox, getSpeechToolbox} = require('../lib/toolbox-xml');
+const {getSpriteToolbox, getStageToolbox, getSpeechToolbox, getWedoToolbox} = require('../lib/toolbox-xml');
 
 const initialState = {
     currentToolbox: getSpriteToolbox()
@@ -36,7 +36,7 @@ reducer.setSpeechToolbox = function () {
     return reducer.updateToolbox(getSpeechToolbox());
 };
 reducer.setWedoToolbox = function () {
-    // return reducer.updateToolbox();
+    return reducer.updateToolbox(getWedoToolbox());
 };
 
 module.exports = reducer;

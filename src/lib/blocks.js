@@ -136,6 +136,22 @@ module.exports = function (vm) {
         }
     };
 
+    ScratchBlocks.Blocks.wedo_distanceclose = {
+        init: function () {
+            this.jsonInit({
+                "id": "wedo_whendistanceclose",
+                "message0": "when distance close",
+                "args0": [],
+                "inputsInline": true,
+                "nextStatement": null,
+                category: ScratchBlocks.Categories.extensions,
+                colour: ScratchBlocks.Colours.extensions.primary,
+                colourSecondary: ScratchBlocks.Colours.extensions.secondary,
+                colourTertiary: ScratchBlocks.Colours.extensions.tertiary
+            });
+        }
+    };
+
     ScratchBlocks.Blocks.sound_sounds_menu.init = function () {
         const json = jsonForMenuBlock('SOUND_MENU', soundsMenu, soundColors, []);
         this.jsonInit(json);

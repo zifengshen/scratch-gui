@@ -2,6 +2,7 @@ const bindAll = require('lodash.bindall');
 const React = require('react');
 
 const SpeechExtension = require('../lib/libraries/speech-extension.json');
+const WedoExtension = require('../lib/libraries/wedo-extension.json');
 
 const {connect} = require('react-redux');
 
@@ -61,7 +62,6 @@ class TargetPane extends React.Component {
         this.props.vm.deleteSprite(id);
     }
     handleSelectSprite (id) {
-        // @todo: Set toolbox xml depending on sprite id
         this.props.vm.setEditingTarget(id);
 
         if (this.props.sprites[id]) {
@@ -69,7 +69,9 @@ class TargetPane extends React.Component {
             case 'Speech':
                 this.props.onSetSpeechToolbox();
                 break;
-            case 'Wedo':
+            case 'LEGO WeDo':
+                this.props.onSetWedoToolbox();
+                break;
             default:
                 this.props.onSetSpriteToolbox();
             }
@@ -82,7 +84,8 @@ class TargetPane extends React.Component {
         this.props.onSetSpeechToolbox();
     }
     handleWedoClick () {
-
+        this.props.vm.addSprite2(JSON.stringify(WedoExtension.sprite));
+        this.props.onSetWedoToolbox();
     }
 
     render () {
@@ -159,7 +162,11 @@ const mapDispatchToProps = dispatch => ({
     },
     onSetSpeechToolbox: () => {
         dispatch(setSpeechToolbox());
+    },
+    onSetWedoToolbox: () => {
+        dispatch(setWedoToolbox());
     }
+
 });
 
 module.exports = connect(
