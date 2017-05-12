@@ -145,10 +145,10 @@ module.exports = function (vm) {
                         type: 'field_dropdown',
                         name: 'MOTOR_ID',
                         options: [
-                          ['motor', 'DEFAULT'],
-                          ['motor A', 'A'],
-                          ['motor B', 'B'],
-                          ['all motors', 'ALL']
+                          ['motor', 'motor'],
+                          ['motor A', 'motor A'],
+                          ['motor B', 'motor B'],
+                          ['all motors', 'all motors']
                         ]
                     }
                 ],
@@ -258,9 +258,9 @@ module.exports = function (vm) {
                         type: 'field_dropdown',
                         name: 'DIRECTION',
                         options: [
-                          ['this way', 'FORWARD'],
-                          ['that way', 'BACKWARD'],
-                          ['reverse', 'REVERSE']
+                          ['this way', 'this way'],
+                          ['that way', 'that way'],
+                          ['reverse', 'reverse']
                         ]
                     }
                 ],
@@ -398,11 +398,11 @@ module.exports = function (vm) {
                         type: 'field_dropdown',
                         name: 'DIRECTION',
                         options: [
-                          ['any', 'ANY'],
-                          ['up', 'UP'],
-                          ['down', 'DOWN'],
-                          ['left', 'LEFT'],
-                          ['right', 'RIGHT']
+                          ['any', 'any'],
+                          ['up', 'up'],
+                          ['down', 'down'],
+                          ['left', 'left'],
+                          ['right', 'right']
                         ]
                     }
                 ],
@@ -424,10 +424,10 @@ module.exports = function (vm) {
                         type: 'field_dropdown',
                         name: 'DIRECTION',
                         options: [
-                          ['up', 'UP'],
-                          ['down', 'DOWN'],
-                          ['left', 'LEFT'],
-                          ['right', 'RIGHT']
+                          ['up', 'up'],
+                          ['down', 'down'],
+                          ['left', 'left'],
+                          ['right', 'right']
                         ]
                     }
                 ],

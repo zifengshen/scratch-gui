@@ -85,6 +85,7 @@ class TargetPane extends React.Component {
     }
     handleWedoClick () {
         this.props.vm.addSprite2(JSON.stringify(WedoExtension.sprite));
+        this.props.vm.runtime.HACK_WeDo2Blocks.connect();
         this.props.onSetWedoToolbox();
     }
 
