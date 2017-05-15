@@ -61,8 +61,15 @@ class Blocks extends React.Component {
     }
     componentDidUpdate (prevProps) {
         if (prevProps.toolbox !== this.props.toolbox) {
-            // this.workspace.toolbox_.clearSelection();
+            const selectedCategoryName = this.workspace.toolbox_.getSelectedItem().name_;
             this.workspace.updateToolbox(this.props.toolbox);
+
+            const categories = this.workspace.toolbox_.categoryMenu_.categories_;
+            for (let i = 0; i < categories.length; i++) {
+                if (categories[i].name_ === selectedCategoryName) {
+                    this.workspace.toolbox_.setSelectedItem(categories[i]);
+                }
+            }
         }
     }
     componentWillUnmount () {
@@ -130,7 +137,6 @@ class Blocks extends React.Component {
         const dom = this.ScratchBlocks.Xml.textToDom(data.xml);
         this.ScratchBlocks.Xml.domToWorkspace(dom, this.workspace);
         this.ScratchBlocks.Events.enable();
-        this.workspace.toolbox_.refreshSelection();
 
         if (this.props.vm.editingTarget && this.state.workspaceMetrics[this.props.vm.editingTarget.id]) {
             const {scrollX, scrollY, scale} = this.state.workspaceMetrics[this.props.vm.editingTarget.id];
