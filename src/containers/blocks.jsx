@@ -62,18 +62,25 @@ class Blocks extends React.Component {
         if (prevProps.toolbox !== this.props.toolbox) {
             const selectedCategoryName = this.workspace.toolbox_.getSelectedItem().name_;
             this.workspace.updateToolbox(this.props.toolbox);
-
-            const categories = this.workspace.toolbox_.categoryMenu_.categories_;
-            for (let i = 0; i < categories.length; i++) {
-                if (categories[i].name_ === selectedCategoryName) {
-                    this.workspace.toolbox_.setSelectedItem(categories[i]);
-                }
+            const name = this.props.vm.editingTarget.sprite.name;
+            if ((name === 'Speech') || name === 'LEGO WeDo') {
+                this.setToolboxSelectedItemByName('Extensions');
+            } else {
+                this.setToolboxSelectedItemByName(selectedCategoryName);
             }
         }
     }
     componentWillUnmount () {
         this.detachVM();
         this.workspace.dispose();
+    }
+    setToolboxSelectedItemByName (name) {
+        const categories = this.workspace.toolbox_.categoryMenu_.categories_;
+        for (let i = 0; i < categories.length; i++) {
+            if (categories[i].name_ === name) {
+                this.workspace.toolbox_.setSelectedItem(categories[i]);
+            }
+        }
     }
     attachVM () {
         this.workspace.addChangeListener(this.props.vm.blockListener);
