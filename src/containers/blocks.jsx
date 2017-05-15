@@ -7,7 +7,6 @@ const VMScratchBlocks = require('../lib/blocks');
 const VM = require('scratch-vm');
 const Prompt = require('./prompt.jsx');
 const BlocksComponent = require('../components/blocks/blocks.jsx');
-const {getSpriteToolbox, getStageToolbox, getSpeechToolbox} = require('../lib/toolbox-xml');
 
 const addFunctionListener = (object, property, callback) => {
     const oldFn = object[property];
