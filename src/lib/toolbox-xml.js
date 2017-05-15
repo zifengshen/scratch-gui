@@ -159,7 +159,8 @@ const wedoGlobal =
         '</value>'+
     '</block>';
 
-const core = '<category name="Motion" colour="#4C97FF" secondaryColour="#3373CC">'+
+const motion =
+    '<category name="Motion" colour="#4C97FF" secondaryColour="#3373CC">'+
     '<block type="motion_movesteps">'+
       '<value name="STEPS">'+
         '<shadow type="math_number">'+
@@ -262,7 +263,9 @@ const core = '<category name="Motion" colour="#4C97FF" secondaryColour="#3373CC"
     '<block type="motion_xposition"></block>'+
     '<block type="motion_yposition"></block>'+
     '<block type="motion_direction"></block>'+
-  '</category>' +
+  '</category>';
+
+  const looks =
   '<category name="Looks" colour="#9966FF" secondaryColour="#774DCB">'+
     '<block type="looks_show"></block>'+
     '<block type="looks_hide"></block>'+
@@ -324,7 +327,9 @@ const core = '<category name="Motion" colour="#4C97FF" secondaryColour="#3373CC"
     '<block type="looks_backdroporder"></block>'+
     '<block type="looks_backdropname"></block>'+
     '<block type="looks_size"></block>'+
-  '</category>' +
+  '</category>';
+
+  const sound =
   '<category name="Sound" colour="#D65CD6" secondaryColour="#BD42BD">'+
     '<block type="sound_play">'+
       '<value name="SOUND_MENU">'+
@@ -416,7 +421,9 @@ const core = '<category name="Motion" colour="#4C97FF" secondaryColour="#3373CC"
       '</value>'+
     '</block>'+
     '<block type="sound_tempo"></block>'+
-  '</category>'+
+  '</category>';
+
+  const pen =
   '<category name="Pen" colour="#00B295" secondaryColour="#0B8E69">'+
     '<block type="pen_clear"></block>'+
     '<block type="pen_stamp"></block>'+
@@ -470,7 +477,9 @@ const core = '<category name="Motion" colour="#4C97FF" secondaryColour="#3373CC"
         '</shadow>'+
       '</value>'+
     '</block>'+
-  '</category>'+
+  '</category>';
+
+  const events =
   '<category name="Events" colour="#FFD500" secondaryColour="#CC9900">'+
     '<block type="event_whenflagclicked"></block>'+
     '<block type="event_whenkeypressed">'+
@@ -497,7 +506,9 @@ const core = '<category name="Motion" colour="#4C97FF" secondaryColour="#3373CC"
         '<shadow type="event_broadcast_menu"></shadow>'+
       '</value>'+
     '</block>'+
-  '</category>'+
+  '</category>';
+
+  const control =
   '<category name="Control" colour="#FFAB19" secondaryColour="#CF8B17">'+
     '<block type="control_wait">'+
       '<value name="DURATION">'+
@@ -526,7 +537,9 @@ const core = '<category name="Motion" colour="#4C97FF" secondaryColour="#3373CC"
       '</value>'+
     '</block>'+
     '<block type="control_delete_this_clone"></block>'+
-  '</category>'+
+  '</category>';
+
+  const sensing =
   '<category name="Sensing" colour="#4CBFE6" secondaryColour="#2E8EB8">'+
     '<block type="sensing_touchingobject">'+
       '<value name="TOUCHINGOBJECTMENU">'+
@@ -576,7 +589,9 @@ const core = '<category name="Motion" colour="#4C97FF" secondaryColour="#3373CC"
     '</value>'+
   '</block>'+
   '<block type="sensing_dayssince2000"></block>'+
-  '</category>'+
+  '</category>';
+
+  const operators =
   '<category name="Operators" colour="#40BF4A" secondaryColour="#389438">'+
     '<block type="operator_add">'+
       '<value name="NUM1">'+
@@ -736,6 +751,26 @@ const core = '<category name="Motion" colour="#4C97FF" secondaryColour="#3373CC"
     '</block>'+
   '</category>';
 
+const noBlocks = '<label text="No blocks" web-class="extensionLabel"></label>';
+
+const extensionCore =
+    '<category name="Motion" colour="#CCCCCC" secondaryColour="#999999">'+
+    noBlocks +
+    '</category>'+
+    '<category name="Looks" colour="#CCCCCC" secondaryColour="#999999">'+
+    noBlocks +
+    '</category>'+
+    sound +
+    '<category name="Pen" colour="#CCCCCC" secondaryColour="#999999">'+
+    noBlocks +
+    '</category>'+
+    events +
+    control +
+    sensing +
+    operators;
+
+const core = motion + looks + sound + pen + events + control + sensing + operators;
+
   module.exports = {
     getSpriteToolbox: () => {
         return wrapCategories([core, getGlobalExtensionBlocks()]);
@@ -745,10 +780,10 @@ const core = '<category name="Motion" colour="#4C97FF" secondaryColour="#3373CC"
     },
     getSpeechToolbox: () => {
         hasSpeech = true;
-        return wrapCategories([core, getSpeechExtensionBlocks()]);
+        return wrapCategories([extensionCore, getSpeechExtensionBlocks()]);
     },
     getWedoToolbox: () => {
         hasWedo = true;
-        return wrapCategories([core, getWedoExtensionBlocks()]);
+        return wrapCategories([extensionCore, getWedoExtensionBlocks()]);
     }
   };
