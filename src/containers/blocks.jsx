@@ -62,12 +62,7 @@ class Blocks extends React.Component {
         if (prevProps.toolbox !== this.props.toolbox) {
             const selectedCategoryName = this.workspace.toolbox_.getSelectedItem().name_;
             this.workspace.updateToolbox(this.props.toolbox);
-            const name = this.props.vm.editingTarget.sprite.name;
-            if ((name === 'Speech') || name === 'LEGO WeDo') {
-                this.setToolboxSelectedItemByName('Extensions');
-            } else {
-                this.setToolboxSelectedItemByName(selectedCategoryName);
-            }
+            this.setToolboxSelectedItemByName(selectedCategoryName);
         }
     }
     componentWillUnmount () {
