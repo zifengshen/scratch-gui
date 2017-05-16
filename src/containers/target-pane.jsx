@@ -82,11 +82,22 @@ class TargetPane extends React.Component {
     handleSpeechClick () {
         this.props.vm.addSprite2(JSON.stringify(SpeechExtension.sprite));
         this.props.onSetSpeechToolbox();
+        this.selectExtensionsCategory();
     }
     handleWedoClick () {
         this.props.vm.addSprite2(JSON.stringify(WedoExtension.sprite));
         this.props.vm.runtime.HACK_WeDo2Blocks.connect();
         this.props.onSetWedoToolbox();
+        this.selectExtensionsCategory();
+    }
+
+    selectExtensionsCategory () {
+        const categories = window.workspace.toolbox_.categoryMenu_.categories_;
+        for (let i = 0; i < categories.length; i++) {
+            if (categories[i].name_ === 'Extensions') {
+                window.workspace.toolbox_.setSelectedItem(categories[i]);
+            }
+        }
     }
 
     render () {
