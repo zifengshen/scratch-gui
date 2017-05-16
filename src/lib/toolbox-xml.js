@@ -70,7 +70,7 @@ const speechGlobal =
           '</shadow>'+
         '</value>'+
     '</block>'+
-    '<block type="speech_getlatestspeech"></block>';
+    '<block type="speech_getlatestspeech" gap="' + gapSize + '"></block>';
 
 const wedoLabel = '<label text="LEGO WeDo 2.0" web-class="extensionLabel"></label>';
 
@@ -155,7 +155,7 @@ const wedoGlobal =
             '<shadow type="wedo2_dropdown_tilt" />'+
         '</value>'+
     '</block>'+
-    '<block type="wedo2_getTiltAngle">'+
+    '<block type="wedo2_getTiltAngle" gap="' + gapSize + '">'+
         '<value name="DIRECTION">'+
             '<shadow type="wedo2_dropdown_tilt_reporter" />'+
         '</value>'+
