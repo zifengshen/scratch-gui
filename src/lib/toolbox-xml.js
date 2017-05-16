@@ -49,10 +49,12 @@ function getWedoExtensionBlocks () {
 
 const extensionsCategory = '<category name="Extensions" colour="#FF6680" secondaryColour="#FF4D6A">';
 
+const gapSize = 45;
+
 const speechLabel = '<label text="Speech" web-class="extensionLabel"></label>';
 
 const speechLocal =
-    '<block type="speech_speak">'+
+    '<block type="speech_speak" gap="' + gapSize + '">'+
       '<value name="STRING">'+
         '<shadow type="text">'+
           '<field name="TEXT">hello</field>'+
@@ -118,7 +120,7 @@ const wedoLocal =
             '</shadow>'+
         '</value>'+
     '</block>'+
-    '<block type="wedo2_playNoteFor">'+
+    '<block type="wedo2_playNoteFor" gap="' + gapSize + '">'+
         '<value name="NOTE">'+
             '<shadow type="math_number">'+
                 '<field name="NUM">60</field>'+
