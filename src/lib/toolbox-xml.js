@@ -753,6 +753,10 @@ const motion =
     '</block>'+
   '</category>';
 
+  const data =
+    '<category name="Data" colour="#FF8C1A" secondaryColour="#DB6E00" custom="VARIABLE">' +
+  '</category>';
+
 const noBlocks = '<label text="No blocks" web-class="extensionLabel"></label>';
 
 const extensionCore =
@@ -766,12 +770,13 @@ const extensionCore =
     '<category name="Pen" colour="#CCCCCC" secondaryColour="#999999">'+
     noBlocks +
     '</category>'+
+    data +
     events +
     control +
     sensing +
     operators;
 
-const core = motion + looks + sound + pen + events + control + sensing + operators;
+const core = motion + looks + sound + pen + data + events + control + sensing + operators;
 
   module.exports = {
     getSpriteToolbox: () => {
