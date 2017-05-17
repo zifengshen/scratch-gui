@@ -142,8 +142,7 @@ const TargetPane = ({
                 </Box>
             </Box>
         );
-    }
-}
+
 const spriteShape = PropTypes.shape({
     costume: PropTypes.shape({
         url: PropTypes.string,
