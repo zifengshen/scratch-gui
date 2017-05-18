@@ -1,5 +1,3 @@
-const isEqual = require('lodash.isequal');
-const omit = require('lodash.omit');
 const classNames = require('classnames');
 const PropTypes = require('prop-types');
 const React = require('react');
@@ -103,49 +101,49 @@ const TargetPane = ({
                     />
                 </button>
 
-                        <button
-                            className={classNames(styles.addButtonWrapper, styles.addButtonWrapperSpeech)}
-                            onClick={onNewSpeechClick}
-                        >
-                            <img
-                                className={styles.addButton}
-                                src={addSpeechIcon}
-                            />
-                        </button>
+                <button
+                    className={classNames(styles.addButtonWrapper, styles.addButtonWrapperSpeech)}
+                    onClick={onNewSpeechClick}
+                >
+                    <img
+                        className={styles.addButton}
+                        src={addSpeechIcon}
+                    />
+                </button>
 
-                        <button
-                            className={classNames(styles.addButtonWrapper, styles.addButtonWrapperWedo)}
-                            onClick={onNewWedoClick}
-                        >
-                            <img
-                                className={styles.addButton}
-                                src={addWedoIcon}
-                            />
-                        </button>
-                        <SpriteLibrary
-                            visible={spriteLibraryVisible}
-                            vm={vm}
-                            onRequestClose={onRequestCloseSpriteLibrary}
-                        />
-                        <CostumeLibrary
-                            visible={costumeLibraryVisible}
-                            vm={vm}
-                            onRequestClose={onRequestCloseCostumeLibrary}
-                        />
-                        <SoundLibrary
-                            visible={soundLibraryVisible}
-                            vm={vm}
-                            onRequestClose={onRequestCloseSoundLibrary}
-                        />
-                        <BackdropLibrary
-                            visible={backdropLibraryVisible}
-                            vm={vm}
-                            onRequestClose={onRequestCloseBackdropLibrary}
-                        />
-                    </Box>
-                </Box>
+                <button
+                    className={classNames(styles.addButtonWrapper, styles.addButtonWrapperWedo)}
+                    onClick={onNewWedoClick}
+                >
+                    <img
+                        className={styles.addButton}
+                        src={addWedoIcon}
+                    />
+                </button>
+                <SpriteLibrary
+                    visible={spriteLibraryVisible}
+                    vm={vm}
+                    onRequestClose={onRequestCloseSpriteLibrary}
+                />
+                <CostumeLibrary
+                    visible={costumeLibraryVisible}
+                    vm={vm}
+                    onRequestClose={onRequestCloseCostumeLibrary}
+                />
+                <SoundLibrary
+                    visible={soundLibraryVisible}
+                    vm={vm}
+                    onRequestClose={onRequestCloseSoundLibrary}
+                />
+                <BackdropLibrary
+                    visible={backdropLibraryVisible}
+                    vm={vm}
+                    onRequestClose={onRequestCloseBackdropLibrary}
+                />
             </Box>
-        );
+        </Box>
+    </Box>
+);
 
 const spriteShape = PropTypes.shape({
     costume: PropTypes.shape({
