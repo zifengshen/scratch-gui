@@ -135,9 +135,6 @@ const wedoLocal =
 
 const wedoGlobal =
     '<block type="wedo2_whenDistance">'+
-        '<value name="OP">'+
-            '<shadow type="wedo2_dropdown_op" />'+
-        '</value>'+
         '<value name="REFERENCE">'+
             '<shadow type="math_positive_number">'+
                 '<field name="NUM">50</field>'+

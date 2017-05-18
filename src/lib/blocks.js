@@ -371,8 +371,12 @@ module.exports = function (vm) {
                 message0: 'when distance %1 %2',
                 args0: [
                     {
-                        type: 'input_value',
-                        name: 'OP'
+                        type: 'field_dropdown',
+                        name: 'OP',
+                        options: [
+                            ['<', '<'],
+                            ['>', '>']
+                        ]
                     },
                     {
                         type: 'input_value',
