@@ -55,7 +55,8 @@ class Blocks extends React.Component {
         this.attachVM();
     }
     shouldComponentUpdate (nextProps, nextState) {
-        return this.state.prompt !== nextState.prompt || this.props.isVisible !== nextProps.isVisible;
+        // return this.state.prompt !== nextState.prompt || this.props.isVisible !== nextProps.isVisible;
+        return true;
 	}
 
     componentDidUpdate (prevProps) {
@@ -178,7 +179,7 @@ class Blocks extends React.Component {
             options, // eslint-disable-line no-unused-vars
             vm, // eslint-disable-line no-unused-vars
             isVisible, // eslint-disable-line no-unused-vars
-            toolbox, // eslint-disable-line no-unused-vars            
+            toolbox, // eslint-disable-line no-unused-vars
             ...props
         } = this.props;
         return (
