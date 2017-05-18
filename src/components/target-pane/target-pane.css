@@ -46,10 +46,14 @@
     height: 0.8rem;
 }
 
+.extensionbutton {
+    height: 1.5rem;
+}
+
 /* @todo: This is hacky. Better: move buttons in their corresponding panes, and set values relatively */
 .add-button-wrapper--sprite   { right: 7rem; }
 .add-button-wrapper--stage    { right: 1.6rem; }
 .add-button-wrapper--costume  { right: 1.6rem; }
-.add-button-wrapper--speech   { right: 12rem; }
-.add-button-wrapper--wedo     { right: 16rem; }
+.add-button-wrapper--speech   { right: 10.5rem; }
+.add-button-wrapper--wedo     { right: 14rem; }
 

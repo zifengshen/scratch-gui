@@ -106,7 +106,7 @@ const TargetPane = ({
                     onClick={onNewSpeechClick}
                 >
                     <img
-                        className={styles.addButton}
+                        className={styles.extensionbutton}
                         src={addSpeechIcon}
                     />
                 </button>
@@ -116,7 +116,7 @@ const TargetPane = ({
                     onClick={onNewWedoClick}
                 >
                     <img
-                        className={styles.addButton}
+                        className={styles.extensionbutton}
                         src={addWedoIcon}
                     />
                 </button>
