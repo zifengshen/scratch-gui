@@ -17,6 +17,9 @@ const StageSelector = require('../../containers/stage-selector.jsx');
 const styles = require('./target-pane.css');
 const addIcon = require('./icon--add.svg');
 
+const addSpeechIcon = require('./icon--add-speech.svg');
+const addWedoIcon = require('./icon--add-wedo.svg');
+
 /*
  * Pane that contains the sprite selector, sprite info, stage selector,
  * and the new sprite, costume and backdrop buttons
@@ -106,7 +109,7 @@ const TargetPane = ({
                         >
                             <img
                                 className={styles.addButton}
-                                src={addIcon}
+                                src={addSpeechIcon}
                             />
                         </button>
 
@@ -116,9 +119,10 @@ const TargetPane = ({
                         >
                             <img
                                 className={styles.addButton}
-                                src={addIcon}
+                                src={addWedoIcon}
                             />
-                        </button>                        <SpriteLibrary
+                        </button>
+                        <SpriteLibrary
                             visible={spriteLibraryVisible}
                             vm={vm}
                             onRequestClose={onRequestCloseSpriteLibrary}
