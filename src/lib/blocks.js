@@ -153,6 +153,7 @@ module.exports = function (vm) {
                     }
                 ],
                 output: 'String',
+                outputShape: ScratchBlocks.OUTPUT_SHAPE_SQUARE,
                 category: ScratchBlocks.Categories.extensions,
                 colour: ScratchBlocks.Colours.extensions.primary,
                 colourSecondary: ScratchBlocks.Colours.extensions.secondary,
@@ -265,6 +266,7 @@ module.exports = function (vm) {
                     }
                 ],
                 output: 'String',
+                outputShape: ScratchBlocks.OUTPUT_SHAPE_SQUARE,
                 category: ScratchBlocks.Categories.extensions,
                 colour: ScratchBlocks.Colours.extensions.primary,
                 colourSecondary: ScratchBlocks.Colours.extensions.secondary,
@@ -356,6 +358,7 @@ module.exports = function (vm) {
                     }
                 ],
                 output: 'String',
+                outputShape: ScratchBlocks.OUTPUT_SHAPE_SQUARE,
                 category: ScratchBlocks.Categories.extensions,
                 colour: ScratchBlocks.Colours.extensions.primary,
                 colourSecondary: ScratchBlocks.Colours.extensions.secondary,
@@ -411,6 +414,7 @@ module.exports = function (vm) {
                     }
                 ],
                 output: 'String',
+                outputShape: ScratchBlocks.OUTPUT_SHAPE_SQUARE,
                 category: ScratchBlocks.Categories.extensions,
                 colour: ScratchBlocks.Colours.extensions.primary,
                 colourSecondary: ScratchBlocks.Colours.extensions.secondary,
@@ -436,6 +440,7 @@ module.exports = function (vm) {
                     }
                 ],
                 output: 'String',
+                outputShape: ScratchBlocks.OUTPUT_SHAPE_SQUARE,
                 category: ScratchBlocks.Categories.extensions,
                 colour: ScratchBlocks.Colours.extensions.primary,
                 colourSecondary: ScratchBlocks.Colours.extensions.secondary,
@@ -504,7 +509,7 @@ module.exports = function (vm) {
     ScratchBlocks.Blocks.wedo2_getTiltAngle = {
         init: function () {
             this.jsonInit({
-                message0: 'tilt angle %1.',
+                message0: 'tilt angle %1',
                 args0: [
                     {
                         type: 'input_value',
