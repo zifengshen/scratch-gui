@@ -54,11 +54,16 @@ const gapSize = 45;
 const speechLabel = '<label text="Speech" web-class="extensionLabel"></label>';
 
 const speechLocal =
-    '<block type="speech_speak" gap="' + gapSize + '">'+
+    '<block type="speech_speak">'+
       '<value name="STRING">'+
         '<shadow type="text">'+
           '<field name="TEXT">hello</field>'+
         '</shadow>'+
+      '</value>'+
+    '</block>'+
+    '<block type="speech_setvoice" gap="' + gapSize + '">'+
+      '<value name="VOICE">'+
+        '<shadow type="speech_dropdown_voice" />'+
       '</value>'+
     '</block>';
 

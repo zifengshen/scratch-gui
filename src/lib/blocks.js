@@ -26,6 +26,14 @@ module.exports = function (vm) {
         };
     };
 
+    const voicesMenu = function () {
+        const voices = vm.runtime.HACK_SpeechBlocks.getVoices();
+        if (voices.length === 0) {
+            return [['default', 'default']];
+        }
+        return voices.map(voice => [voice.name, voice.name]);
+    };
+
     const soundsMenu = function () {
         const sounds = vm.editingTarget.sprite.sounds;
         if (sounds.length === 0) {
@@ -68,6 +76,8 @@ module.exports = function (vm) {
 
     const controlColors = ScratchBlocks.Colours.control;
 
+    const extensionsColors = ScratchBlocks.Colours.extensions;
+
     ScratchBlocks.Blocks.speech_whenihear = {
       /**
        * Block to start a stack when speech recognition detects a string.
@@ -109,6 +119,53 @@ module.exports = function (vm) {
                 ],
                 previousStatement: null,
                 nextStatement: null,
+                category: ScratchBlocks.Categories.extensions,
+                colour: ScratchBlocks.Colours.extensions.primary,
+                colourSecondary: ScratchBlocks.Colours.extensions.secondary,
+                colourTertiary: ScratchBlocks.Colours.extensions.tertiary
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.speech_setvoice = {
+        /**
+        * Block to set a voice for speech synthesis.
+        * @this Blockly.Block
+        */
+        init: function () {
+            this.jsonInit({
+                message0: 'set voice to %1',
+                args0: [
+                    {
+                        type: 'input_value',
+                        name: 'VOICE'
+                    }
+                ],
+                previousStatement: null,
+                nextStatement: null,
+                category: ScratchBlocks.Categories.extensions,
+                colour: ScratchBlocks.Colours.extensions.primary,
+                colourSecondary: ScratchBlocks.Colours.extensions.secondary,
+                colourTertiary: ScratchBlocks.Colours.extensions.tertiary
+            });
+        }
+    };
+
+    ScratchBlocks.Blocks.speech_dropdown_voice = {
+        init: function () {
+            this.jsonInit({
+                message0: '%1',
+                args0: [
+                    {
+                        type: 'field_dropdown',
+                        name: 'VOICE',
+                        options: [
+                          ['default', 'default']
+                        ]
+                    }
+                ],
+                output: 'String',
+                outputShape: ScratchBlocks.OUTPUT_SHAPE_SQUARE,
                 category: ScratchBlocks.Categories.extensions,
                 colour: ScratchBlocks.Colours.extensions.primary,
                 colourSecondary: ScratchBlocks.Colours.extensions.secondary,
@@ -529,6 +586,11 @@ module.exports = function (vm) {
 
     ScratchBlocks.Blocks.sound_sounds_menu.init = function () {
         const json = jsonForMenuBlock('SOUND_MENU', soundsMenu, soundColors, []);
+        this.jsonInit(json);
+    };
+
+    ScratchBlocks.Blocks.speech_dropdown_voice.init = function () {
+        const json = jsonForMenuBlock('VOICES', voicesMenu, extensionsColors, []);
         this.jsonInit(json);
     };
 
