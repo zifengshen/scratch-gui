@@ -518,7 +518,7 @@ module.exports = function (vm) {
                 ],
                 output: 'Number',
                 outputShape: ScratchBlocks.OUTPUT_SHAPE_ROUND,
-                checkboxInFlyout: false,
+                checkboxInFlyout: true,
                 category: ScratchBlocks.Categories.extensions,
                 colour: ScratchBlocks.Colours.extensions.primary,
                 colourSecondary: ScratchBlocks.Colours.extensions.secondary,
