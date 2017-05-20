@@ -592,7 +592,9 @@ module.exports = function (vm) {
     };
 
     ScratchBlocks.Blocks.speech_dropdown_voice.init = function () {
-        const json = jsonForMenuBlock('VOICES', voicesMenu, extensionsColors, []);
+        const json = jsonForMenuBlock('VOICES', voicesMenu, extensionsColors, [
+            ['Random', 'Random'],
+        ]);
         this.jsonInit(json);
     };
 
