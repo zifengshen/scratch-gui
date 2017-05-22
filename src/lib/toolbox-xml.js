@@ -49,7 +49,7 @@ function getWedoExtensionBlocks () {
 
 const extensionsCategory = '<category name="Extensions" colour="#FF6680" secondaryColour="#FF4D6A">';
 
-const gapSize = 45;
+const separator = '<sep gap="45"></sep>';
 
 const speechLabel = '<label text="Speech" web-class="extensionLabel"></label>';
 
@@ -61,11 +61,12 @@ const speechLocal =
         '</shadow>'+
       '</value>'+
     '</block>'+
-    '<block type="speech_setvoice" gap="' + gapSize + '">'+
+    '<block type="speech_setvoice">'+
       '<value name="VOICE">'+
         '<shadow type="speech_dropdown_voice" />'+
       '</value>'+
-    '</block>';
+    '</block>'+
+    separator;
 
 const speechGlobal =
     '<block type="speech_whenihear">' +
@@ -75,7 +76,8 @@ const speechGlobal =
           '</shadow>'+
         '</value>'+
     '</block>'+
-    '<block type="speech_getlatestspeech" gap="' + gapSize + '"></block>';
+    '<block type="speech_getlatestspeech"></block>'+
+    separator;
 
 const wedoLabel = '<label text="LEGO WeDo 2.0" web-class="extensionLabel"></label>';
 
@@ -125,7 +127,7 @@ const wedoLocal =
             '</shadow>'+
         '</value>'+
     '</block>'+
-    '<block type="wedo2_playNoteFor" gap="' + gapSize + '">'+
+    '<block type="wedo2_playNoteFor">'+
         '<value name="NOTE">'+
             '<shadow type="math_number">'+
                 '<field name="NUM">60</field>'+
@@ -136,7 +138,8 @@ const wedoLocal =
                 '<field name="NUM">0.5</field>'+
             '</shadow>'+
         '</value>'+
-    '</block>';
+    '</block>'+
+    separator;
 
 const wedoGlobal =
     '<block type="wedo2_whenDistance">'+
@@ -157,11 +160,12 @@ const wedoGlobal =
             '<shadow type="wedo2_dropdown_tilt" />'+
         '</value>'+
     '</block>'+
-    '<block type="wedo2_getTiltAngle" gap="' + gapSize + '">'+
+    '<block type="wedo2_getTiltAngle">'+
         '<value name="DIRECTION">'+
             '<shadow type="wedo2_dropdown_tilt_reporter" />'+
         '</value>'+
-    '</block>';
+    '</block>'+
+    separator;
 
 const motion =
     '<category name="Motion" colour="#4C97FF" secondaryColour="#3373CC">'+
