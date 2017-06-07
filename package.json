@@ -64,7 +64,6 @@
     "scratch-blocks": "^0.1.0-prerelease.0",
     "scratch-render": "^0.1.0-prerelease.0",
     "scratch-storage": "^0.1.0",
-    "scratch-vm": "^0.1.0-prerelease.0",
     "style-loader": "^0.17.0",
     "svg-to-image": "1.1.3",
     "svg-url-loader": "2.0.2",
@@ -72,5 +71,8 @@
     "webpack": "^2.4.1",
     "webpack-dev-server": "^2.4.1",
     "xhr": "2.4.0"
+  },
+  "dependencies": {
+    "scratch-vm": "github:llk/scratch-vm#feature/extensions-prototype"
   }
 }
