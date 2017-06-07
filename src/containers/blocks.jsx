@@ -118,13 +118,13 @@ class Blocks extends React.Component {
         this.props.vm.removeListener('targetsUpdate', this.onTargetsUpdate);
     }
     updateToolboxBlockValue (id, value) {
-        this.workspace
-            .getFlyout()
-            .getWorkspace()
-            .getBlockById(id)
-            .inputList[0]
-            .fieldRow[0]
-            .setValue(value);
+        // this.workspace
+        //     .getFlyout()
+        //     .getWorkspace()
+        //     .getBlockById(id)
+        //     .inputList[0]
+        //     .fieldRow[0]
+        //     .setValue(value);
     }
     onTargetsUpdate () {
         if (this.props.vm.editingTarget) {
