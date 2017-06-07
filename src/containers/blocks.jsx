@@ -57,10 +57,10 @@ class Blocks extends React.Component {
 
         this.attachVM();
     }
-    shouldComponentUpdate (nextProps, nextState) {
+    shouldComponentUpdate () {
         // return this.state.prompt !== nextState.prompt || this.props.isVisible !== nextProps.isVisible;
         return true;
-	}
+    }
 
     componentDidUpdate (prevProps) {
         if (prevProps.toolbox !== this.props.toolbox) {
@@ -117,7 +117,7 @@ class Blocks extends React.Component {
         this.props.vm.removeListener('workspaceUpdate', this.onWorkspaceUpdate);
         this.props.vm.removeListener('targetsUpdate', this.onTargetsUpdate);
     }
-    updateToolboxBlockValue (id, value) {
+    updateToolboxBlockValue () {
         // this.workspace
         //     .getFlyout()
         //     .getWorkspace()
@@ -224,28 +224,29 @@ class Blocks extends React.Component {
 }
 
 Blocks.propTypes = {
-    options: React.PropTypes.shape({
-        media: React.PropTypes.string,
-        zoom: React.PropTypes.shape({
-            controls: React.PropTypes.boolean,
-            wheel: React.PropTypes.boolean,
-            startScale: React.PropTypes.number
+    isVisible: PropTypes.boolean,
+    options: PropTypes.shape({
+        media: PropTypes.string,
+        zoom: PropTypes.shape({
+            controls: PropTypes.boolean,
+            wheel: PropTypes.boolean,
+            startScale: PropTypes.number
         }),
-        colours: React.PropTypes.shape({
-            workspace: React.PropTypes.string,
-            flyout: React.PropTypes.string,
-            toolbox: React.PropTypes.string,
-            toolboxSelected: React.PropTypes.string,
-            scrollbar: React.PropTypes.string,
-            scrollbarHover: React.PropTypes.string,
-            insertionMarker: React.PropTypes.string,
-            insertionMarkerOpacity: React.PropTypes.number,
-            fieldShadow: React.PropTypes.string,
-            dragShadowOpacity: React.PropTypes.number
+        colours: PropTypes.shape({
+            workspace: PropTypes.string,
+            flyout: PropTypes.string,
+            toolbox: PropTypes.string,
+            toolboxSelected: PropTypes.string,
+            scrollbar: PropTypes.string,
+            scrollbarHover: PropTypes.string,
+            insertionMarker: PropTypes.string,
+            insertionMarkerOpacity: PropTypes.number,
+            fieldShadow: PropTypes.string,
+            dragShadowOpacity: PropTypes.number
         })
     }),
-    toolbox: React.PropTypes.string,
-    vm: React.PropTypes.instanceOf(VM).isRequired
+    toolbox: PropTypes.string,
+    vm: PropTypes.instanceOf(VM).isRequired
 };
 
 Blocks.defaultOptions = {
@@ -284,10 +285,10 @@ const mapStateToProps = state => ({
     toolbox: state.toolbox.currentToolbox
 });
 
-const mapDispatchToProps = dispatch => ({
-});
+// const mapDispatchToProps = dispatch => ({
+// });
 
 module.exports = connect(
-    mapStateToProps,
-    mapDispatchToProps
+    mapStateToProps
+    // mapDispatchToProps
 )(Blocks);
