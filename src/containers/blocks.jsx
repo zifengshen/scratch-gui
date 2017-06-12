@@ -74,8 +74,8 @@ class Blocks extends React.Component {
 
         // @todo hack to resize blockly manually in case resize happened while hidden
         if (this.props.isVisible) { // Scripts tab
-            window.dispatchEvent(new Event('resize'));
             this.workspace.setVisible(true);
+            window.dispatchEvent(new Event('resize'));
             this.workspace.toolbox_.refreshSelection();
         } else {
             this.workspace.setVisible(false);
@@ -117,14 +117,14 @@ class Blocks extends React.Component {
         this.props.vm.removeListener('workspaceUpdate', this.onWorkspaceUpdate);
         this.props.vm.removeListener('targetsUpdate', this.onTargetsUpdate);
     }
-    updateToolboxBlockValue () {
-        // this.workspace
-        //     .getFlyout()
-        //     .getWorkspace()
-        //     .getBlockById(id)
-        //     .inputList[0]
-        //     .fieldRow[0]
-        //     .setValue(value);
+    updateToolboxBlockValue (id, value) {
+        const block = this.workspace
+            .getFlyout()
+            .getWorkspace()
+            .getBlockById(id);
+        if (block) {
+            block.inputList[0].fieldRow[0].setValue(value);
+        }
     }
     onTargetsUpdate () {
         if (this.props.vm.editingTarget) {
@@ -166,7 +166,6 @@ class Blocks extends React.Component {
         if (this.props.vm.editingTarget && !this.state.workspaceMetrics[this.props.vm.editingTarget.id]) {
             this.onWorkspaceMetricsChange();
         }
-
         this.ScratchBlocks.Events.disable();
         this.workspace.clear();
 
@@ -190,6 +189,7 @@ class Blocks extends React.Component {
     }
     handlePromptCallback (data) {
         this.state.prompt.callback(data);
+        this.props.vm.createVariable(data);
         this.handlePromptClose();
     }
     handlePromptClose () {
@@ -243,7 +243,8 @@ Blocks.propTypes = {
             insertionMarkerOpacity: PropTypes.number,
             fieldShadow: PropTypes.string,
             dragShadowOpacity: PropTypes.number
-        })
+        }),
+        comments: PropTypes.bool
     }),
     toolbox: PropTypes.string,
     vm: PropTypes.instanceOf(VM).isRequired
@@ -271,7 +272,8 @@ Blocks.defaultOptions = {
         insertionMarkerOpacity: 0.2,
         fieldShadow: 'rgba(255, 255, 255, 0.3)',
         dragShadowOpacity: 0.6
-    }
+    },
+    comments: false
 };
 
 Blocks.defaultProps = {
