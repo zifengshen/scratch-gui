@@ -63,6 +63,22 @@ const opcodeMap = {
     sensing_timer: {
         category: 'sensing',
         label: 'timer'
+    },
+
+    // Wedo
+    wedo2_getDistance: {
+        category: 'extensions',
+        label: 'distance'
+    },
+    wedo2_getTiltAngle: {
+        category: 'extensions',
+        labelFn: params => `tilt angle ${params.DIRECTION}`
+    },
+
+    // Speech
+    speech_getlatestspeech: {
+        category: 'extensions',
+        label: 'speech'
     }
 };
 
