@@ -47,11 +47,11 @@ class TargetPane extends React.Component {
                 switch (this.props.sprites[id].name) {
                 case 'Speech':
                     this.props.onSetSpeechToolbox();
-                    this.selectExtensionsCategory()
+                    this.selectExtensionsCategory();
                     break;
                 case 'LEGO WeDo':
                     this.props.onSetWedoToolbox();
-                    this.selectExtensionsCategory()
+                    this.selectExtensionsCategory();
                     break;
                 default:
                     this.props.onSetSpriteToolbox();
