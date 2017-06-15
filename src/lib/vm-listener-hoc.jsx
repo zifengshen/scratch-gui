@@ -100,8 +100,12 @@ const vmListenerHOC = function (WrappedComponent) {
     });
     const mapDispatchToProps = dispatch => ({
         onTargetsUpdate: data => {
-            dispatch(targets.updateEditingTarget(data.editingTarget));
+            // @paulkaplan switched the order of these two events because
+            // previously, the editing target was updated before the target list
+            // so you potentially had an editing target id that was not in the target list
+            // this order of events seems more correct
             dispatch(targets.updateTargets(data.targetList));
+            dispatch(targets.updateEditingTarget(data.editingTarget));
         },
         onMonitorsUpdate: monitorList => {
             dispatch(monitors.updateMonitors(monitorList));
