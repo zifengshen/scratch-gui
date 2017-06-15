@@ -23,7 +23,7 @@ const MenuBar = function MenuBar () {
             </div>
             <SaveButton className={styles.menuItem} />
             <LoadButton className={styles.menuItem} />
-            <div className={classNames(styles.title, styles.menuItem)}>Extensions Prototype</div>
+            <div className={classNames(styles.title, styles.menuItem)}>Extensions Prototype - Work in Progress</div>
         </Box>
     );
 };
