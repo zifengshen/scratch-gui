@@ -40,6 +40,30 @@ class TargetPane extends React.Component {
             'handleWedoClick'
         ]);
     }
+    componentDidUpdate (prevProps) {
+        if (this.props.editingTarget !== prevProps.editingTarget) {
+            const id = this.props.editingTarget;
+            if (this.props.sprites[id]) {
+                // console.log(prevProps.sprites[id].name);
+                switch (this.props.sprites[id].name) {
+                case 'Speech':
+                    this.props.onSetSpeechToolbox();
+                    this.selectExtensionsCategory()
+                    break;
+                case 'LEGO WeDo':
+                    this.props.onSetWedoToolbox();
+                    this.selectExtensionsCategory()
+                    break;
+                default:
+                    this.props.onSetSpriteToolbox();
+                }
+            } else if (id === this.props.stage.id) {
+                this.props.onSetStageToolbox();
+            } else {
+                console.log('for some reason the id does not exist in sprites and is not the stage');
+            }
+        }
+    }
     handleChangeSpriteDirection (direction) {
         this.props.vm.postSpriteInfo({direction});
     }
@@ -63,33 +87,18 @@ class TargetPane extends React.Component {
     }
     handleSelectSprite (id) {
         this.props.vm.setEditingTarget(id);
-
-        if (this.props.sprites[id]) {
-            switch (this.props.sprites[id].name) {
-            case 'Speech':
-                this.props.onSetSpeechToolbox();
-                break;
-            case 'LEGO WeDo':
-                this.props.onSetWedoToolbox();
-                break;
-            default:
-                this.props.onSetSpriteToolbox();
-            }
-        } else {
-            this.props.onSetStageToolbox();
-        }
     }
     handleSpeechClick () {
         this.props.vm.addSprite2(JSON.stringify(SpeechExtension.sprite));
-        this.props.onSetSpeechToolbox();
-        this.selectExtensionsCategory();
+        // this.props.onSetSpeechToolbox();
+        // this.selectExtensionsCategory();
         this.props.vm.runtime.HACK_SpeechBlocks.startSpeechRecogntion();
     }
     handleWedoClick () {
         this.props.vm.addSprite2(JSON.stringify(WedoExtension.sprite));
         this.props.vm.runtime.HACK_WeDo2Blocks.connect();
-        this.props.onSetWedoToolbox();
-        this.selectExtensionsCategory();
+        // this.props.onSetWedoToolbox();
+        // this.selectExtensionsCategory();
     }
 
     selectExtensionsCategory () {
