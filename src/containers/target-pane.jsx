@@ -44,7 +44,6 @@ class TargetPane extends React.Component {
         if (this.props.editingTarget !== prevProps.editingTarget) {
             const id = this.props.editingTarget;
             if (this.props.sprites[id]) {
-                // console.log(prevProps.sprites[id].name);
                 switch (this.props.sprites[id].name) {
                 case 'Speech':
                     this.props.onSetSpeechToolbox();
@@ -60,7 +59,8 @@ class TargetPane extends React.Component {
             } else if (id === this.props.stage.id) {
                 this.props.onSetStageToolbox();
             } else {
-                console.log('for some reason the id does not exist in sprites and is not the stage');
+                // how did we get here?
+                // console.log('for some reason the id does not exist in sprites and is not the stage');
             }
         }
     }
