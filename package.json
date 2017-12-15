@@ -27,7 +27,7 @@
     "react-dom": "^16.0.0"
   },
   "dependencies": {
-   "scratch-vm": "github:kchadha/scratch-vm#broadcast-input-functionality",
+   "scratch-vm": "github:kchadha/scratch-vm#empty-string-2-message-n",
    "scratch-blocks": "github:kchadha/scratch-blocks#broadcast-input-fields"
   },
   "devDependencies": {
