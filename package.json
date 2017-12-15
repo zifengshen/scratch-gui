@@ -26,6 +26,9 @@
     "react": "^16.0.0",
     "react-dom": "^16.0.0"
   },
+  "dependencies": {
+    "scratch-paint": "github:fsih/scratch-paint#fill"
+  },
   "devDependencies": {
     "autoprefixer": "^7.1.3",
     "babel-core": "^6.23.1",
@@ -86,7 +89,6 @@
     "scratch-audio": "latest",
     "scratch-blocks": "latest",
     "scratch-l10n": "latest",
-    "scratch-paint": "latest",
     "scratch-render": "latest",
     "scratch-storage": "^0.3.0",
     "scratch-vm": "latest",
