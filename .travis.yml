@@ -12,6 +12,7 @@ cache:
   directories:
   - node_modules
 install:
+- rm -rf node_modules/scratch-paint
 - npm install
 - npm update
 - cd node_modules/scratch-paint && npm --production=false install && npm run build && cd -
